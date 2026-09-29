@@ -1,0 +1,2213 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../01_%E5%8D%95%E7%BB%84%E4%BA%8C%E5%88%86%E7%B1%BB%E6%95%B0%E6%8D%AE%E7%9A%84%E7%BB%9F%E8%AE%A1%E5%88%86%E6%9E%90/">
+      
+      
+        <link rel="next" href="../../%E7%94%9F%E5%AD%98%E5%88%86%E6%9E%90/1.%20%E7%94%9F%E5%AD%98%E5%88%86%E6%9E%90%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>两组独立二分类 - 生物统计笔记</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="生物统计笔记" class="md-header__button md-logo" aria-label="生物统计笔记" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            生物统计笔记
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              两组独立二分类
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../01_%E5%8D%95%E7%BB%84%E4%BA%8C%E5%88%86%E7%B1%BB%E6%95%B0%E6%8D%AE%E7%9A%84%E7%BB%9F%E8%AE%A1%E5%88%86%E6%9E%90/" class="md-tabs__link">
+          
+  
+  
+  统计方法学
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E7%94%9F%E5%AD%98%E5%88%86%E6%9E%90/1.%20%E7%94%9F%E5%AD%98%E5%88%86%E6%9E%90%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" class="md-tabs__link">
+          
+  
+  
+  生存分析
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="生物统计笔记" class="md-nav__button md-logo" aria-label="生物统计笔记" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    生物统计笔记
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    统计方法学
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    统计方法学
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01_%E5%8D%95%E7%BB%84%E4%BA%8C%E5%88%86%E7%B1%BB%E6%95%B0%E6%8D%AE%E7%9A%84%E7%BB%9F%E8%AE%A1%E5%88%86%E6%9E%90/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    单组二分类
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    两组独立二分类
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    两组独立二分类
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 两组二分类数据为什么是临床试验的核心场景
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 从一个随机对照试验案例说起
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 两组率值：先看每组各自发生了什么
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 率差：最直观的绝对效应量
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 率差的区间估计
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 率差的区间估计">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-wald" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Wald 区间
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-newcombe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Newcombe 区间
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-miettinen-nurminen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 Miettinen-Nurminen 区间
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 率比：相对变化如何理解
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-log-score" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 率比的区间估计：log 方法、score 方法和零事件问题
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. 率比的区间估计：log 方法、score 方法和零事件问题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-log" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 log 方法
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-score" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 score 方法
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3 零事件问题
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-logistic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. 优势比：logistic 回归为什么常用
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-log-or" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. 优势比的区间估计：log OR、精确方法和分离问题
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. 两组率比较的假设检验
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. 两组率比较的假设检验">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#101-pearson" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.1 Pearson 卡方检验
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#102-z" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.2 两比例 z 检验
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#103-fisher" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.3 Fisher 精确检验
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#104-score" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.4 score 检验和似然比检验
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. 优效、非劣效和等效：同样的数据，不同的临床问题
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. 优效、非劣效和等效：同样的数据，不同的临床问题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#111" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.1 优效
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#112" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.2 非劣效
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#113" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.3 等效
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. 小样本、稀有事件和不平衡分配
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. 小样本、稀有事件和不平衡分配">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#121" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.1 小样本
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#122" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.2 稀有事件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#123" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.3 不平衡分配
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#124" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.4 事件方向
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. 率差、率比、优势比如何选择
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-sap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. 实践建议：方案、SAP 和结果报告中应写清楚什么
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14. 实践建议：方案、SAP 和结果报告中应写清楚什么">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#141" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.1 终点和事件方向
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#142" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.2 主要效应量
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#143" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.3 区间估计方法
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#144" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.4 假设检验方法
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#145" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.5 优效、非劣效或等效界值
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#146" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.6 缺失和分析集
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#147" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.7 报告格式
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. 小结
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    生存分析
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    生存分析
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%94%9F%E5%AD%98%E5%88%86%E6%9E%90/1.%20%E7%94%9F%E5%AD%98%E5%88%86%E6%9E%90%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    基础概念
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 两组二分类数据为什么是临床试验的核心场景
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 从一个随机对照试验案例说起
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 两组率值：先看每组各自发生了什么
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 率差：最直观的绝对效应量
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 率差的区间估计
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. 率差的区间估计">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-wald" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Wald 区间
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-newcombe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Newcombe 区间
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-miettinen-nurminen" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 Miettinen-Nurminen 区间
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 率比：相对变化如何理解
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-log-score" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. 率比的区间估计：log 方法、score 方法和零事件问题
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. 率比的区间估计：log 方法、score 方法和零事件问题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-log" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.1 log 方法
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-score" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.2 score 方法
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.3 零事件问题
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-logistic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. 优势比：logistic 回归为什么常用
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-log-or" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. 优势比的区间估计：log OR、精确方法和分离问题
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. 两组率比较的假设检验
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. 两组率比较的假设检验">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#101-pearson" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.1 Pearson 卡方检验
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#102-z" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.2 两比例 z 检验
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#103-fisher" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.3 Fisher 精确检验
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#104-score" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.4 score 检验和似然比检验
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. 优效、非劣效和等效：同样的数据，不同的临床问题
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. 优效、非劣效和等效：同样的数据，不同的临床问题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#111" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.1 优效
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#112" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.2 非劣效
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#113" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.3 等效
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. 小样本、稀有事件和不平衡分配
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. 小样本、稀有事件和不平衡分配">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#121" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.1 小样本
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#122" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.2 稀有事件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#123" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.3 不平衡分配
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#124" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.4 事件方向
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. 率差、率比、优势比如何选择
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-sap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14. 实践建议：方案、SAP 和结果报告中应写清楚什么
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="14. 实践建议：方案、SAP 和结果报告中应写清楚什么">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#141" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.1 终点和事件方向
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#142" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.2 主要效应量
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#143" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.3 区间估计方法
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#144" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.4 假设检验方法
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#145" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.5 优效、非劣效或等效界值
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#146" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.6 缺失和分析集
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#147" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14.7 报告格式
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15. 小结
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="导航栏" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../01_%E5%8D%95%E7%BB%84%E4%BA%8C%E5%88%86%E7%B1%BB%E6%95%B0%E6%8D%AE%E7%9A%84%E7%BB%9F%E8%AE%A1%E5%88%86%E6%9E%90/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    统计方法学
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="_1">两组独立二分类数据的统计分析</h1>
+<h2 id="1">1. 两组二分类数据为什么是临床试验的核心场景</h2>
+<p>在临床试验中，最经典的问题不是“某个治疗组的响应率是多少”，而是“新治疗是否比对照治疗更好、更安全，或者至少不差到不可接受”。这就自然形成了两组独立二分类数据的分析问题。</p>
+<p>所谓“两组独立”，通常指治疗组和对照组由不同受试者组成，每个受试者只属于其中一组。例如：</p>
+<ul>
+<li>新药组与安慰剂组比较第 12 周响应率；</li>
+<li>新器械组与标准器械组比较操作成功率；</li>
+<li>疫苗组与对照组比较感染发生率；</li>
+<li>试验治疗组与标准治疗组比较严重不良事件发生率。</li>
+</ul>
+<p>二分类终点的结果只有两个状态，例如响应/未响应、发生/未发生、成功/失败。因此，两组数据通常可以整理成一个 <span class="arithmatex">\(2 \times 2\)</span> 表。</p>
+<p>两组二分类数据分析的核心不只是分别估计两组率值，而是估计和检验组间差异。常用效应量包括：</p>
+<ul>
+<li><strong>率值</strong>：每组各自的事件发生比例；</li>
+<li><strong>率差</strong>：两组率值相差多少个百分点；</li>
+<li><strong>率比</strong>：一组率值是另一组的多少倍；</li>
+<li><strong>优势比</strong>：一组事件 odds 与另一组事件 odds 的比值。</li>
+</ul>
+<p>这几个效应量回答的是不同问题。率差强调绝对获益，率比强调相对变化，优势比则与 logistic 回归天然衔接。正式分析时，不能只说“治疗组更高”或“有统计学差异”，而应说明差异有多大、不确定性有多大，以及这个差异是否有临床意义。</p>
+<h2 id="2">2. 从一个随机对照试验案例说起</h2>
+<p>假设某随机对照试验评价一种新药相对于标准治疗的疗效。主要终点为第 12 周是否达到临床响应。研究共纳入 240 例受试者，按 1:1 随机分配到新药组和对照组。</p>
+<table>
+<thead>
+<tr>
+<th>组别</th>
+<th style="text-align: right;">总例数</th>
+<th style="text-align: right;">响应例数</th>
+<th style="text-align: right;">未响应例数</th>
+<th style="text-align: right;">响应率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>新药组</td>
+<td style="text-align: right;">120</td>
+<td style="text-align: right;">72</td>
+<td style="text-align: right;">48</td>
+<td style="text-align: right;">60.0%</td>
+</tr>
+<tr>
+<td>对照组</td>
+<td style="text-align: right;">120</td>
+<td style="text-align: right;">54</td>
+<td style="text-align: right;">66</td>
+<td style="text-align: right;">45.0%</td>
+</tr>
+</tbody>
+</table>
+<p>记新药组响应率为 <span class="arithmatex">\(p_1\)</span>，对照组响应率为 <span class="arithmatex">\(p_0\)</span>。样本估计为：</p>
+<div class="arithmatex">\[
+\hat p_1 = \frac{72}{120}=0.60
+\]</div>
+<div class="arithmatex">\[
+\hat p_0 = \frac{54}{120}=0.45
+\]</div>
+<p>看到这张表，临床上最直接的判断是：新药组响应率更高。但统计分析还要继续回答：</p>
+<ul>
+<li>新药组比对照组高多少？</li>
+<li>这个差异可能只是随机波动吗？</li>
+<li>用绝对差异、相对差异和优势比解释时，结论是否一致？</li>
+<li>如果这是优效、非劣效或等效研究，应如何判断？</li>
+<li>小样本、稀有事件或零事件时，方法是否还可靠？</li>
+</ul>
+<p>下面围绕这个例子，从率值、率差、率比、优势比逐层展开。</p>
+<h2 id="3">3. 两组率值：先看每组各自发生了什么</h2>
+<p>两组二分类数据的第一步，是估计每组各自的事件率。</p>
+<p>若治疗组事件数为 <span class="arithmatex">\(x_1\)</span>，总例数为 <span class="arithmatex">\(n_1\)</span>，对照组事件数为 <span class="arithmatex">\(x_0\)</span>，总例数为 <span class="arithmatex">\(n_0\)</span>，则：</p>
+<div class="arithmatex">\[
+\hat p_1 = \frac{x_1}{n_1}
+\]</div>
+<div class="arithmatex">\[
+\hat p_0 = \frac{x_0}{n_0}
+\]</div>
+<p>在案例中：</p>
+<div class="arithmatex">\[
+\hat p_1 = 60.0\%,\quad \hat p_0 = 45.0\%
+\]</div>
+<p>两组率值是所有后续分析的基础。没有这两个率值，率差、率比和优势比都无法解释。</p>
+<p>但只报告两组率值仍然不够。因为临床问题通常不是“每组是多少”，而是“组间差异是什么”。例如 60% 对 45% 可以说新药组更高，但高 15 个百分点、相对提高 33%、优势比约为 1.83，这三种表达传递的信息并不完全相同。</p>
+<p>因此，两组分析的关键是从“组内率值”走向“组间效应量”。</p>
+<h2 id="4">4. 率差：最直观的绝对效应量</h2>
+<p>率差是两组率值的直接相减：</p>
+<div class="arithmatex">\[
+RD = p_1 - p_0
+\]</div>
+<p>样本估计为：</p>
+<div class="arithmatex">\[
+\widehat{RD} = \hat p_1 - \hat p_0
+\]</div>
+<p>在案例中：</p>
+<div class="arithmatex">\[
+\widehat{RD} = 0.60 - 0.45 = 0.15
+\]</div>
+<p>也就是说，新药组响应率比对照组高 15 个百分点。</p>
+<p>率差的最大优点是临床解释直观。它回答的是：每治疗 100 名患者，新药组比对照组多多少名患者达到响应？</p>
+<p>在案例中，答案是约多 15 名。</p>
+<p>如果事件是有益事件，例如响应、缓解、治愈，<span class="arithmatex">\(RD &gt; 0\)</span> 通常有利于治疗组。如果事件是不良事件，例如严重不良事件、死亡、复发，<span class="arithmatex">\(RD &gt; 0\)</span> 则可能不利于治疗组。因此，报告率差时必须明确事件方向。</p>
+<p>不过，率差依赖对照组基线风险。同样的相对疗效，在低基线风险和高基线风险人群中会对应不同的绝对差异。因此，率差最适合用于表达临床获益大小，但其外推到不同人群时需要谨慎。</p>
+<h2 id="5">5. 率差的区间估计</h2>
+<p>率差的点估计只是样本中的观察差异。正式报告还需要给出置信区间。</p>
+<h3 id="51-wald">5.1 Wald 区间</h3>
+<p>最直观的方法是 Wald 区间。因为两组相互独立，率差的标准误可估计为：</p>
+<div class="arithmatex">\[
+SE(\widehat{RD}) = \sqrt{\frac{\hat p_1(1-\hat p_1)}{n_1}+\frac{\hat p_0(1-\hat p_0)}{n_0}}
+\]</div>
+<p>于是 95% Wald 区间为：</p>
+<div class="arithmatex">\[
+\widehat{RD} \pm 1.96 \times SE(\widehat{RD})
+\]</div>
+<p>代入案例：</p>
+<div class="arithmatex">\[
+SE(\widehat{RD}) = \sqrt{\frac{0.60 \times 0.40}{120}+\frac{0.45 \times 0.55}{120}} \approx 0.0638
+\]</div>
+<div class="arithmatex">\[
+95\%CI = 0.15 \pm 1.96 \times 0.0638
+\]</div>
+<p>约为 2.5 个百分点到 27.5 个百分点。</p>
+<p>这表示，新药真实响应率优势可能只有约 2.5 个百分点，也可能达到约 27.5 个百分点。</p>
+<p>Wald 区间容易理解，但缺点也明显：当样本量小、事件率接近 0 或 1、组间样本量严重不平衡时，覆盖率可能不理想，甚至可能给出不合理范围。</p>
+<h3 id="52-newcombe">5.2 Newcombe 区间</h3>
+<p>Newcombe 区间的思路可以理解为：不要直接对率差使用简单正态近似，而是先分别为两组率值构造较稳健的 Wilson 区间，再把两个单组区间组合成率差区间。</p>
+<p>如果治疗组 <span class="arithmatex">\(p_1\)</span> 的 Wilson 区间为 <span class="arithmatex">\((L_1, U_1)\)</span>，对照组 <span class="arithmatex">\(p_0\)</span> 的 Wilson 区间为 <span class="arithmatex">\((L_0, U_0)\)</span>，那么率差区间可以通过组合两组不确定性得到。直观上，率差的下限来自“治疗组可能较低、对照组可能较高”的情形；率差的上限来自“治疗组可能较高、对照组可能较低”的情形：
+$$
+L=(\hat p_1-\hat p_0)-\sqrt{(\hat p_1-L_1)^2+(U_0-\hat p_0)^2}
+$$</p>
+<div class="arithmatex">\[
+U=(\hat p_1-\hat p_0)+\sqrt{(U_1-\hat p_1)^2+(\hat p_0 -L_0)^2}
+\]</div>
+<p>Newcombe 方法的优点是：</p>
+<ul>
+<li>闭合公式（Closed-form），无需复杂的迭代计算，甚至可以在 Excel 中直接通过公式算出来；</li>
+<li>边界严格：计算出的置信区间永远严格保持在 <span class="arithmatex">\([-1, 1]\)</span> 的合理范围内；</li>
+<li>覆盖率优秀：即使在极端情况（如发生率为0或样本量极小）下，其名义覆盖概率依然非常接近目标值（如 95%）。</li>
+</ul>
+<p>它的缺点是：虽然表现极佳，但在极其严苛的理论推导中，它是一种基于经验的近似组合，而非完全基于似然函数的推导。</p>
+<h3 id="53-miettinen-nurminen">5.3 Miettinen-Nurminen 区间</h3>
+<p>Miettinen-Nurminen 区间通常简称 MN 区间，由 Olli S. Miettinen 和 Markku Nurminen 于 1985 年提出。它是临床试验中两独立比例差非常重要的一类 score 型渐近方法。</p>
+<p>先设实验组样本量为 <span class="arithmatex">\(n_1\)</span>，事件数为 <span class="arithmatex">\(x_1\)</span>，样本率为 <span class="arithmatex">\(\hat p_1=x_1/n_1\)</span>；对照组样本量为 <span class="arithmatex">\(n_0\)</span>，事件数为 <span class="arithmatex">\(x_0\)</span>，样本率为 <span class="arithmatex">\(\hat p_0=x_0/n_0\)</span>。真实率差参数为：<span class="arithmatex">\(\theta = p_1 - p_0\)</span>，样本率差为：<span class="arithmatex">\(\hat\theta = \hat p_1 - \hat p_0\)</span>。</p>
+<p>MN 方法不是直接把两组样本率代入方差公式，然后简单地加减标准误，而是基于假设检验反演置信区间。构造区间时，它会逐一考察候选率差 <span class="arithmatex">\(\delta\)</span> 是否可能是真实率差：<span class="arithmatex">\(H_0: p_1 - p_0 = \delta\)</span>。如果某个 <span class="arithmatex">\(\delta\)</span> 与观察数据差异太大，就把它排除；如果不太矛盾，就保留。所有未被排除的 <span class="arithmatex">\(\delta\)</span> 组成率差的置信区间。</p>
+<p>MN 法的计算逻辑可以分成四步。</p>
+<p>第一步是在约束条件 <span class="arithmatex">\(p_1-p_0=\delta\)</span> 下做限制性最大似然估计。也就是说，不允许 <span class="arithmatex">\(p_1\)</span> 和 <span class="arithmatex">\(p_0\)</span> 自由取各自的样本率，而是要求二者差值固定为候选值 <span class="arithmatex">\(\delta\)</span>。在这个约束下最大化二项似然函数，得到限制性估计值 <span class="arithmatex">\(\tilde p_1\)</span> 和 <span class="arithmatex">\(\tilde p_0\)</span>。</p>
+<p>第二步是求解限制性估计。实际计算中，求 <span class="arithmatex">\(\tilde p_1\)</span> 通常需要解一个一元三次方程；得到 <span class="arithmatex">\(\tilde p_1\)</span> 后，再由约束关系得到：</p>
+<div class="arithmatex">\[
+\tilde p_0 = \tilde p_1 - \delta
+\]</div>
+<p>这也是 MN 法比 Wald 区间更难手算的原因之一。它不是一个代入样本率即可完成的闭式公式，通常需要统计软件完成。</p>
+<p>第三步是构造 score 统计量。常见形式可写为：</p>
+<div class="arithmatex">\[
+\chi^2(\delta)=
+\frac{(\hat p_1-\hat p_0-\delta)^2}
+{\left[\frac{\tilde p_1(1-\tilde p_1)}{n_1}+\frac{\tilde p_0(1-\tilde p_0)}{n_0}\right]\left(\frac{N}{N-1}\right)}
+\]</div>
+<p>其中 <span class="arithmatex">\(N=n_1+n_0\)</span>。这里的关键点是：方差不是用无约束样本率 <span class="arithmatex">\(\hat p_1\)</span> 和 <span class="arithmatex">\(\hat p_0\)</span> 计算，而是用候选假设 <span class="arithmatex">\(p_1-p_0=\delta\)</span> 下的限制性估计 <span class="arithmatex">\(\tilde p_1\)</span> 和 <span class="arithmatex">\(\tilde p_0\)</span> 计算。部分软件实现中可能会省略 <span class="arithmatex">\(\frac{N}{N-1}\)</span> 这个小样本修正项，因此不同软件在最后几位小数上可能略有差异。</p>
+<p>第四步是通过数值反演确定区间边界。对于双侧 <span class="arithmatex">\(1-\alpha\)</span> 置信区间，MN 区间由所有满足下式的 <span class="arithmatex">\(\delta\)</span> 组成：</p>
+<div class="arithmatex">\[
+\chi^2(\delta) \le Z_{1-\alpha/2}^2
+\]</div>
+<p>其中 <span class="arithmatex">\(Z_{1-\alpha/2}\)</span> 是标准正态分布分位数。实际计算时，软件会通过迭代寻根找到使等号成立的下限和上限。</p>
+<p>MN 区间的优点是理论基础较扎实，通常比简单 Wald 区间有更好的覆盖表现，并且自然保持在率差合理范围 <span class="arithmatex">\([-1,1]\)</span> 内。它也很适合与非劣效和等效分析衔接，因为这些研究常常关心率差是否超过某个预设界值。</p>
+<p>MN 区间的局限也很明确：计算复杂，需要求解三次方程并进行数值迭代，基本不适合手算；同时它仍属于渐近方法，在极小样本或极端稀疏数据下仍需谨慎。实践中，如果两组样本量较大且事件率不极端，Wald 区间可能给出接近结果；如果研究是关键性临床试验、非劣效试验或样本量不大，Newcombe 或 Miettinen-Nurminen 往往更合适。</p>
+<h2 id="6">6. 率比：相对变化如何理解</h2>
+<p>率比，也称相对风险或风险比，定义为：</p>
+<div class="arithmatex">\[
+RR = \frac{p_1}{p_0}
+\]</div>
+<p>样本估计为：</p>
+<div class="arithmatex">\[
+\widehat{RR} = \frac{\hat p_1}{\hat p_0}
+\]</div>
+<p>在案例中：</p>
+<div class="arithmatex">\[
+\widehat{RR} = \frac{0.60}{0.45}=1.33
+\]</div>
+<p>这表示新药组响应率是对照组的 1.33 倍，也可以说相对提高约 33%。</p>
+<p>率比回答的是相对变化问题：与对照组相比，治疗组事件发生率成比例地增加或减少了多少？</p>
+<p>当事件是有益事件时，<span class="arithmatex">\(RR &gt; 1\)</span> 通常有利于治疗组；当事件是不良事件时，<span class="arithmatex">\(RR &lt; 1\)</span> 通常有利于治疗组。</p>
+<p>率比的优点是便于表达相对疗效。例如：</p>
+<ul>
+<li>响应率从 10% 提高到 20%，<span class="arithmatex">\(RR=2.0\)</span>；</li>
+<li>响应率从 40% 提高到 80%，<span class="arithmatex">\(RR=2.0\)</span>。</li>
+</ul>
+<p>两者相对变化相同，但临床意义不完全一样。前者绝对增加 10 个百分点，后者绝对增加 40 个百分点。因此，率比最好与率差一起报告。</p>
+<h2 id="7-log-score">7. 率比的区间估计：log 方法、score 方法和零事件问题</h2>
+<p>率比不能简单地在原始尺度上构造对称区间，因为它的取值范围是大于 0，且分布通常右偏。因此，常见做法是在对数尺度上构造区间，再反变换回率比尺度。</p>
+<h3 id="71-log">7.1 log 方法</h3>
+<p>对率比取对数：</p>
+<div class="arithmatex">\[
+\log(\widehat{RR}) = \log(\hat p_1) - \log(\hat p_0)
+\]</div>
+<p>其标准误常近似为：</p>
+<div class="arithmatex">\[
+SE[\log(\widehat{RR})] = \sqrt{\frac{1}{x_1}-\frac{1}{n_1}+\frac{1}{x_0}-\frac{1}{n_0}}
+\]</div>
+<p>95% 区间先在 log 尺度上写为：</p>
+<div class="arithmatex">\[
+\log(\widehat{RR}) \pm 1.96 \times SE[\log(\widehat{RR})]
+\]</div>
+<p>再取指数得到 <span class="arithmatex">\(RR\)</span> 区间。</p>
+<p>在案例中，<span class="arithmatex">\(\widehat{RR}=1.33\)</span>。代入事件数 <span class="arithmatex">\(x_1=72\)</span>，<span class="arithmatex">\(n_1=120\)</span>，<span class="arithmatex">\(x_0=54\)</span>，<span class="arithmatex">\(n_0=120\)</span>，可得到近似 95% 区间约为：1.04 到 1.70。因为区间下限高于 1，从率比角度看，新药组响应率高于对照组。</p>
+<h3 id="72-score">7.2 score 方法</h3>
+<p>log 方法简单，但仍是近似方法。对于样本量较小、事件率较极端或需要更稳健推断时，可使用基于 score 的率比区间。它的思想与前面讲过的 Wilson 和 Miettinen-Nurminen 类似：对候选 <span class="arithmatex">\(RR\)</span> 值做检验，再把未被排除的值组成区间。score 方法通常比简单 log Wald 方法具有更好的覆盖表现，但计算更复杂，需要统计软件支持。</p>
+<h3 id="73">7.3 零事件问题</h3>
+<p>率比最怕零事件，尤其是对照组事件数为 0 时。因为：</p>
+<div class="arithmatex">\[
+\widehat{RR} = \frac{\hat p_1}{\hat p_0}
+\]</div>
+<p>如果 <span class="arithmatex">\(\hat p_0=0\)</span>，率比无法计算。</p>
+<p>常见处理方式包括：</p>
+<ul>
+<li>使用率差作为主要效应量，因为率差在零事件时仍可计算；</li>
+<li>使用精确方法或模型方法；</li>
+<li>对 2x2 表加入连续性校正，例如每格加 0.5；</li>
+<li>在安全性稀有事件中使用专门的稀疏数据方法。</li>
+</ul>
+<p>连续性校正虽然方便，但可能改变估计，尤其在两组样本量不平衡时影响较大。因此，关键分析不应机械依赖加 0.5，而应根据研究设计和统计分析计划预先规定处理方法。</p>
+<h2 id="8-logistic">8. 优势比：logistic 回归为什么常用</h2>
+<p>优势比的英文是 odds ratio，简称 OR。它不是率的比，而是 odds 的比。</p>
+<p>对于某一组，事件发生率为 <span class="arithmatex">\(p\)</span>，则事件 odds 为：</p>
+<div class="arithmatex">\[
+odds = \frac{p}{1-p}
+\]</div>
+<p>两组优势比为：</p>
+<div class="arithmatex">\[
+OR = \frac{p_1/(1-p_1)}{p_0/(1-p_0)}
+\]</div>
+<p>在案例中：</p>
+<div class="arithmatex">\[
+odds_1 = \frac{0.60}{0.40}=1.50
+\]</div>
+<div class="arithmatex">\[
+odds_0 = \frac{0.45}{0.55}=0.818
+\]</div>
+<div class="arithmatex">\[
+\widehat{OR} = \frac{1.50}{0.818}=1.83
+\]</div>
+<p>这表示新药组达到响应的 odds 约为对照组的 1.83 倍。</p>
+<p>OR 的一个重要特点是它与 logistic 回归天然对应。如果建立模型：</p>
+<div class="arithmatex">\[
+logit[P(Y=1)] = \beta_0 + \beta_1 \times Treatment
+\]</div>
+<p>其中 <span class="arithmatex">\(Treatment=1\)</span> 表示新药组，<span class="arithmatex">\(Treatment=0\)</span> 表示对照组，则：</p>
+<div class="arithmatex">\[
+e^{\beta_1} = OR
+\]</div>
+<p>因此，当需要调整基线协变量、分层因素或中心效应时，logistic 回归通常输出调整后的 OR。</p>
+<p>但 OR 的临床解释有局限。事件率较低时，OR 与 RR 接近；事件率较高时，OR 会明显偏离 RR。在本案例中：</p>
+<ul>
+<li><span class="arithmatex">\(RR = 1.33\)</span>；</li>
+<li><span class="arithmatex">\(OR = 1.83\)</span>。</li>
+</ul>
+<p>如果把 OR 错误解释为“响应率提高 83%”，就会夸大相对疗效。更准确的说法是：响应的 odds 增加，而不是响应率本身增加 83%。</p>
+<h2 id="9-log-or">9. 优势比的区间估计：log OR、精确方法和分离问题</h2>
+<p>OR 通常在对数尺度上构造区间。</p>
+<p>对于 2x2 表：</p>
+<table>
+<thead>
+<tr>
+<th>组别</th>
+<th style="text-align: right;">事件</th>
+<th style="text-align: right;">非事件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>治疗组</td>
+<td style="text-align: right;"><span class="arithmatex">\(a\)</span></td>
+<td style="text-align: right;"><span class="arithmatex">\(b\)</span></td>
+</tr>
+<tr>
+<td>对照组</td>
+<td style="text-align: right;"><span class="arithmatex">\(c\)</span></td>
+<td style="text-align: right;"><span class="arithmatex">\(d\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>样本 OR 为：</p>
+<div class="arithmatex">\[
+\widehat{OR} = \frac{a/b}{c/d} = \frac{ad}{bc}
+\]</div>
+<p>log OR 的标准误常近似为：</p>
+<div class="arithmatex">\[
+SE[\log(\widehat{OR})] = \sqrt{\frac{1}{a}+\frac{1}{b}+\frac{1}{c}+\frac{1}{d}}
+\]</div>
+<p>95% 区间先在 log 尺度上构造：</p>
+<div class="arithmatex">\[
+\log(\widehat{OR}) \pm 1.96 \times SE[\log(\widehat{OR})]
+\]</div>
+<p>再取指数得到 OR 区间。</p>
+<p>在案例中，<span class="arithmatex">\(a=72\)</span>，<span class="arithmatex">\(b=48\)</span>，<span class="arithmatex">\(c=54\)</span>，<span class="arithmatex">\(d=66\)</span>，<span class="arithmatex">\(\widehat{OR}=1.83\)</span>，近似 95% 区间约为：1.10 到 3.05。</p>
+<p>由于区间下限高于 1，从 OR 角度看，也支持新药组响应优势。</p>
+<p>当样本量小或某个格子为 0 时，普通 log OR 区间可能无法计算或非常不稳定。例如治疗组全响应、对照组有未响应，就可能出现完全分离。此时可考虑：</p>
+<ul>
+<li>Fisher 精确检验相关的精确 OR 区间；</li>
+<li>条件精确方法；</li>
+<li>Firth penalized logistic 回归；</li>
+<li>Bayesian logistic 回归；</li>
+<li>预先规定的连续性校正。</li>
+</ul>
+<p>如果研究主要目标是临床解释，OR 不应单独报告。建议同时报告两组率值和率差，必要时再报告 RR 或 OR。</p>
+<h2 id="10">10. 两组率比较的假设检验</h2>
+<p>区间估计告诉我们效应量可能处于什么范围，假设检验则回答“观察到这样的组间差异，在零假设下是否足够罕见”。</p>
+<p>对于优效研究，最常见的零假设是两组真实率相同：</p>
+<div class="arithmatex">\[
+H_0: p_1 = p_0
+\]</div>
+<p>备择假设可以是双侧：</p>
+<div class="arithmatex">\[
+H_1: p_1 \ne p_0
+\]</div>
+<p>也可以是单侧：</p>
+<div class="arithmatex">\[
+H_1: p_1 &gt; p_0
+\]</div>
+<p>常见检验方法包括：</p>
+<h3 id="101-pearson">10.1 Pearson 卡方检验</h3>
+<p>Pearson 卡方检验比较观察频数和零假设下期望频数之间的差异。对于大样本 2x2 表，它是最常见的方法之一。</p>
+<p>它的直觉是：如果两组真实响应率相同，那么治疗组和对照组的响应者比例不应相差太大。若观察到的差异远大于随机波动可解释的范围，就拒绝零假设。</p>
+<h3 id="102-z">10.2 两比例 z 检验</h3>
+<p>两比例 z 检验直接比较 <span class="arithmatex">\(\hat p_1\)</span> 与 <span class="arithmatex">\(\hat p_0\)</span>。在零假设 <span class="arithmatex">\(p_1=p_0\)</span> 下，通常使用合并率：</p>
+<div class="arithmatex">\[
+\hat p_{pool} = \frac{x_1+x_0}{n_1+n_0}
+\]</div>
+<p>标准误为：</p>
+<div class="arithmatex">\[
+SE_0 = \sqrt{\hat p_{pool}(1-\hat p_{pool})\left(\frac{1}{n_1}+\frac{1}{n_0}\right)}
+\]</div>
+<p>检验统计量为：</p>
+<div class="arithmatex">\[
+Z = \frac{\hat p_1-\hat p_0}{SE_0}
+\]</div>
+<p>对于 2x2 表，两比例 z 检验和 Pearson 卡方检验在大样本下密切相关，<span class="arithmatex">\(Z^2\)</span> 通常对应卡方统计量。</p>
+<h3 id="103-fisher">10.3 Fisher 精确检验</h3>
+<p>Fisher 精确检验适用于小样本或期望频数较低的 2x2 表。它在给定边际总数的条件下，计算当前或更极端表格出现的概率。</p>
+<p>它的优点是不依赖大样本近似，缺点是通常偏保守，且条件于边际的假设不一定完全对应所有随机化设计。</p>
+<h3 id="104-score">10.4 score 检验和似然比检验</h3>
+<p>score 检验从零假设附近的斜率信息出发，评估观察数据是否偏离零假设。前面提到的 Miettinen-Nurminen 和非劣效率差检验就与 score 思路密切相关。</p>
+<p>似然比检验则比较两个模型的似然：一个模型强制 <span class="arithmatex">\(p_1=p_0\)</span>，另一个模型允许 <span class="arithmatex">\(p_1\)</span> 和 <span class="arithmatex">\(p_0\)</span> 不同。如果放开限制后似然明显提高，就说明两组率可能不同。</p>
+<p>在大样本下，Wald、score 和似然比检验常常给出相近结论；但在小样本、边界率值或非劣效界值附近，它们可能不同。关键研究应在统计分析计划中预先规定主要检验方法。</p>
+<h2 id="11">11. 优效、非劣效和等效：同样的数据，不同的临床问题</h2>
+<p>同样一张 2x2 表，在不同研究目的下，假设完全不同。</p>
+<h3 id="111">11.1 优效</h3>
+<p>优效研究要证明治疗组优于对照组。若事件是有益响应，常见假设为：</p>
+<div class="arithmatex">\[
+H_0: p_1 - p_0 \le 0
+\]</div>
+<div class="arithmatex">\[
+H_1: p_1 - p_0 &gt; 0
+\]</div>
+<p>也可以做双侧检验：</p>
+<div class="arithmatex">\[
+H_0: p_1 - p_0 = 0
+\]</div>
+<div class="arithmatex">\[
+H_1: p_1 - p_0 \ne 0
+\]</div>
+<p>优效结论不应只看 <span class="arithmatex">\(p\)</span> 值，还应看差异大小。若样本量很大，1 个百分点差异也可能显著，但未必有临床意义。</p>
+<h3 id="112">11.2 非劣效</h3>
+<p>非劣效研究不是要证明治疗组更好，而是要证明它不比对照差到不可接受。若事件是有益响应，非劣效界值为 <span class="arithmatex">\(\Delta\)</span>，常见假设为：</p>
+<div class="arithmatex">\[
+H_0: p_1 - p_0 \le -\Delta
+\]</div>
+<div class="arithmatex">\[
+H_1: p_1 - p_0 &gt; -\Delta
+\]</div>
+<p>例如，若临床上认为新药响应率最多可比标准治疗低 10 个百分点，则 <span class="arithmatex">\(\Delta=0.10\)</span>。非劣效要求率差置信区间下限高于 <span class="arithmatex">\(-10\%\)</span>。</p>
+<p>如果案例中的 95% 率差区间约为 2.5% 到 27.5%，显然高于 <span class="arithmatex">\(-10\%\)</span>，因此不仅满足非劣效，也支持优效。但这只是基于当前例子的说明；实际研究必须预先定义界值和分析集。</p>
+<p>非劣效研究尤其要关注分析集。ITT 分析和 PP 分析在非劣效场景中可能给出不同结论，通常需要同时报告并解释。</p>
+<h3 id="113">11.3 等效</h3>
+<p>等效研究要证明两组差异落在一个可接受范围内。若用率差表示，等效范围可写为：</p>
+<div class="arithmatex">\[
+-\Delta_L &lt; p_1-p_0 &lt; \Delta_U
+\]</div>
+<p>若采用对称界值，则为：</p>
+<div class="arithmatex">\[
+-\Delta &lt; p_1-p_0 &lt; \Delta
+\]</div>
+<p>等效通常使用双单侧检验 TOST 或置信区间法。若整个置信区间都落在等效范围内，则支持等效。</p>
+<p>例如等效界值为 <span class="arithmatex">\(\pm 10\%\)</span>。如果率差的 90% 置信区间为 <span class="arithmatex">\(-6\%\)</span> 到 <span class="arithmatex">\(8\%\)</span>，可以支持等效；如果区间为 <span class="arithmatex">\(-6\%\)</span> 到 <span class="arithmatex">\(13\%\)</span>，则不能支持等效，因为不能排除治疗组高出对照超过上界。等效不是“差异不显著”，而是“差异足够小，并且不确定性也足够小”。</p>
+<h2 id="12">12. 小样本、稀有事件和不平衡分配</h2>
+<p>两组二分类分析在常规样本量下比较稳定，但在以下场景中需要特别谨慎。</p>
+<h3 id="121">12.1 小样本</h3>
+<p>小样本下，卡方检验和 Wald 区间可能不可靠。若期望频数较低，可考虑 Fisher 精确检验、精确区间、score 方法或 Bayesian 方法。</p>
+<h3 id="122">12.2 稀有事件</h3>
+<p>安全性终点常出现稀有事件。例如某严重不良事件在两组都很少发生。此时 RR 和 OR 可能非常不稳定，零事件会造成估计困难。</p>
+<p>如果两组均为零事件，率差为 0，但不能说明两组风险相同，更不能说明风险不存在。此时应报告样本量限制，并可考虑给出单组或两组风险上限。</p>
+<h3 id="123">12.3 不平衡分配</h3>
+<p>若 <span class="arithmatex">\(n_1\)</span> 和 <span class="arithmatex">\(n_0\)</span> 差异很大，连续性校正和简单近似方法可能产生偏差。尤其在零事件或稀有事件情况下，每格加 0.5 的做法可能对小组影响更大。</p>
+<h3 id="124">12.4 事件方向</h3>
+<p>疗效终点和安全性终点的有利方向相反。响应率中 <span class="arithmatex">\(RD&gt;0\)</span>、<span class="arithmatex">\(RR&gt;1\)</span>、<span class="arithmatex">\(OR&gt;1\)</span> 通常有利于治疗组；不良事件中这些方向可能表示风险增加。报告中必须避免只写“显著增加”而不说明事件性质。</p>
+<h2 id="13">13. 率差、率比、优势比如何选择</h2>
+<p>三类效应量没有绝对优劣，关键是它们回答的问题不同。</p>
+<table>
+<thead>
+<tr>
+<th>效应量</th>
+<th>回答的问题</th>
+<th>优点</th>
+<th>局限</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>率差 <span class="arithmatex">\(RD\)</span></td>
+<td>治疗组比对照组多或少多少个百分点？</td>
+<td>临床解释最直观</td>
+<td>依赖基线风险，跨人群外推需谨慎</td>
+<td>主要疗效解释、非劣效界值、安全性绝对风险</td>
+</tr>
+<tr>
+<td>率比 <span class="arithmatex">\(RR\)</span></td>
+<td>治疗组事件率是对照组多少倍？</td>
+<td>便于表达相对变化，临床和流行病学常用</td>
+<td>对照组零事件时难以计算；不能反映绝对获益大小</td>
+<td>相对疗效、安全性风险比、跨研究比较</td>
+</tr>
+<tr>
+<td>优势比 <span class="arithmatex">\(OR\)</span></td>
+<td>治疗组事件 odds 是对照组多少倍？</td>
+<td>与 logistic 回归天然衔接，便于协变量调整</td>
+<td>事件率高时容易被误解为 RR，可能夸大相对效应感</td>
+<td>logistic 回归、调整分析、病例-对照或模型分析</td>
+</tr>
+</tbody>
+</table>
+<p>实践中建议：</p>
+<ul>
+<li>优先报告两组事件数、总例数和率值；</li>
+<li>对疗效终点，通常至少报告率差及其置信区间；</li>
+<li>若需要表达相对效果，可同时报告 RR；</li>
+<li>若使用 logistic 回归调整协变量，应报告 OR，但最好补充调整后率值或率差；</li>
+<li>不要把 OR 直接解释成风险比或概率比。</li>
+</ul>
+<h2 id="14-sap">14. 实践建议：方案、SAP 和结果报告中应写清楚什么</h2>
+<p>对于两组独立二分类终点，建议在方案和统计分析计划中预先写清楚以下内容。</p>
+<h3 id="141">14.1 终点和事件方向</h3>
+<p>应说明什么算事件，以及事件是有益事件还是不良事件。比如“第 12 周达到临床响应”与“治疗期间发生严重不良事件”方向完全不同。</p>
+<h3 id="142">14.2 主要效应量</h3>
+<p>应明确主要效应量是率差、率比还是优势比。若是非劣效研究，通常要特别说明界值是定义在率差、率比还是 OR 尺度上。</p>
+<h3 id="143">14.3 区间估计方法</h3>
+<p>应预先规定主要置信区间方法。例如：</p>
+<ul>
+<li>率差采用 Miettinen-Nurminen 、Newcombe等区间；</li>
+<li>RR 采用 log 方法或 score 方法；</li>
+<li>OR 采用 logistic 回归 profile likelihood 区间或 Wald log OR 区间。</li>
+</ul>
+<h3 id="144">14.4 假设检验方法</h3>
+<p>应预先规定主要检验，例如 Pearson 卡方检验、Fisher 精确检验、score 检验、Farrington-Manning 检验或模型检验。</p>
+<h3 id="145">14.5 优效、非劣效或等效界值</h3>
+<p>若研究目标不是普通优效，应明确：</p>
+<ul>
+<li>非劣效界值或等效界值；</li>
+<li>界值的临床依据；</li>
+<li>使用单侧还是双侧显著性水平；</li>
+<li>对应的置信区间水平；</li>
+<li>判定规则。</li>
+</ul>
+<h3 id="146">14.6 缺失和分析集</h3>
+<p>应说明缺失主要终点的受试者如何处理，以及主要分析使用 ITT/FAS、PP 还是其他分析集。非劣效研究通常应特别关注 ITT 与 PP 结果的一致性。</p>
+<h3 id="147">14.7 报告格式</h3>
+<p>推荐结果报告至少包括：</p>
+<ul>
+<li>每组事件数和总例数；</li>
+<li>每组率值；</li>
+<li>主要效应量点估计；</li>
+<li>主要效应量置信区间；</li>
+<li>主要假设检验 <span class="arithmatex">\(p\)</span> 值；</li>
+<li>临床解释；</li>
+<li>敏感性分析结果。</li>
+</ul>
+<h2 id="15">15. 小结</h2>
+<p>两组独立二分类数据分析的核心，是从每组率值走向组间效应量。率值告诉我们每组发生了什么；率差告诉我们绝对差异；率比告诉我们相对变化；优势比则与 logistic 回归和调整分析紧密相关。</p>
+<p>常用区间估计方法对比如下：</p>
+<table>
+<thead>
+<tr>
+<th>对象</th>
+<th>常用方法</th>
+<th>基本思路</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>两组率值</td>
+<td>Wilson、Clopper-Pearson</td>
+<td>分别估计每组率值不确定性</td>
+<td>描述每组事件率</td>
+</tr>
+<tr>
+<td>率差</td>
+<td>Wald</td>
+<td>直接对 <span class="arithmatex">\(\hat p_1-\hat p_0\)</span> 使用正态近似</td>
+<td>大样本、率值不极端时的简单分析</td>
+</tr>
+<tr>
+<td>率差</td>
+<td>Newcombe</td>
+<td>组合两组 Wilson 区间</td>
+<td>中小样本、希望比 Wald 更稳健时</td>
+</tr>
+<tr>
+<td>率差</td>
+<td>Miettinen-Nurminen</td>
+<td>score 检验反演候选率差</td>
+<td>关键研究、非劣效或等效分析</td>
+</tr>
+<tr>
+<td>率比</td>
+<td>log 方法</td>
+<td>在 <span class="arithmatex">\(\log(RR)\)</span> 尺度上构造区间后反变换</td>
+<td>常规大样本 RR 分析</td>
+</tr>
+<tr>
+<td>率比</td>
+<td>score 方法</td>
+<td>对候选 RR 进行检验反演</td>
+<td>样本量较小或需要更稳健覆盖时</td>
+</tr>
+<tr>
+<td>优势比</td>
+<td>log OR Wald 区间</td>
+<td>在 <span class="arithmatex">\(\log(OR)\)</span> 尺度上构造区间后反变换</td>
+<td>常规 2x2 表或 logistic 回归输出</td>
+</tr>
+<tr>
+<td>优势比</td>
+<td>精确或 Firth 方法</td>
+<td>处理小样本、零格子或分离</td>
+<td>稀疏数据、小样本、完全或近完全分离</td>
+</tr>
+</tbody>
+</table>
+<p>常用假设检验方法对比如下：</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>基本原理</th>
+<th>优点</th>
+<th>局限</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pearson 卡方检验</td>
+<td>比较观察频数与零假设期望频数</td>
+<td>简单常用，大样本表现好</td>
+<td>小样本或期望频数低时不稳</td>
+<td>常规大样本优效比较</td>
+</tr>
+<tr>
+<td>两比例 z 检验</td>
+<td>比较 <span class="arithmatex">\(\hat p_1-\hat p_0\)</span> 与零假设下标准误</td>
+<td>与率差解释直接衔接</td>
+<td>依赖正态近似</td>
+<td>大样本两组比例比较</td>
+</tr>
+<tr>
+<td>Fisher 精确检验</td>
+<td>固定边际后计算极端表格概率</td>
+<td>小样本可用，不依赖大样本近似</td>
+<td>通常偏保守，条件假设需理解</td>
+<td>小样本、稀有事件、期望频数低</td>
+</tr>
+<tr>
+<td>score 检验</td>
+<td>在零假设或界值下计算标准化偏离</td>
+<td>稳健，适合界值检验</td>
+<td>计算较复杂</td>
+<td>非劣效、等效、Miettinen-Nurminen 类分析</td>
+</tr>
+<tr>
+<td>似然比检验</td>
+<td>比较受限模型与非受限模型似然</td>
+<td>与模型框架衔接自然</td>
+<td>小样本需谨慎</td>
+<td>GLM、logistic 模型或模型比较</td>
+</tr>
+<tr>
+<td>TOST</td>
+<td>将等效拆成两个单侧检验</td>
+<td>等效逻辑清楚</td>
+<td>依赖预设等效界值</td>
+<td>两组等效研究</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.path", "navigation.top"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

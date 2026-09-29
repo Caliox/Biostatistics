@@ -1,0 +1,1790 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../..">
+      
+      
+        <link rel="next" href="../02_%E4%B8%A4%E7%BB%84%E7%8B%AC%E7%AB%8B%E4%BA%8C%E5%88%86%E7%B1%BB%E6%95%B0%E6%8D%AE%E7%9A%84%E7%BB%9F%E8%AE%A1%E5%88%86%E6%9E%90/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>单组二分类 - 生物统计笔记</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="生物统计笔记" class="md-header__button md-logo" aria-label="生物统计笔记" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            生物统计笔记
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              单组二分类
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+  统计方法学
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E7%94%9F%E5%AD%98%E5%88%86%E6%9E%90/1.%20%E7%94%9F%E5%AD%98%E5%88%86%E6%9E%90%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" class="md-tabs__link">
+          
+  
+  
+  生存分析
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="生物统计笔记" class="md-nav__button md-logo" aria-label="生物统计笔记" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    生物统计笔记
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    统计方法学
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    统计方法学
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    单组二分类
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    单组二分类
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 单组二分类数据在临床试验中为什么常见
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 从一个单臂肿瘤试验案例说起
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-xn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 率值的点估计：\(x/n\) ，简单，但不等于真实率
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 为什么必须报告置信区间
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-wald" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Wald 区间：最容易理解，也最容易误用
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-wilson-score" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Wilson 区间：更稳健的 score 思路
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-clopper-pearson" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Clopper-Pearson 精确区间：从二项分布反推真实率
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-bayesian-jeffreys" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Bayesian 和 Jeffreys 区间：另一种理解不确定性的方式
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-score" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. 与历史目标值比较：精确二项检验和 score 检验
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. 单组优效、非劣效和等效判断
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. 单组优效、非劣效和等效判断">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#101" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.1 单组优效
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#102" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.2 单组非劣效
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#103" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.3 单组等效
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. 零事件、全事件和小样本问题
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. 零事件、全事件和小样本问题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#111" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.1 零事件不等于真实风险为零
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#112-100" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.2 全事件也不等于真实率为 100%
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#113" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.3 小样本下方法选择更重要
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. 单组分析的常见误区
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. 单组分析的常见误区">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#121" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.1 只报告率值，不报告区间
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#122" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.2 把历史对照当成随机对照
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#123-p" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.3 只看 \(p\) 值，不看临床意义
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#124" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.4 事后选择目标值
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#125" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.5 忽视分母变化
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. 小结
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_%E4%B8%A4%E7%BB%84%E7%8B%AC%E7%AB%8B%E4%BA%8C%E5%88%86%E7%B1%BB%E6%95%B0%E6%8D%AE%E7%9A%84%E7%BB%9F%E8%AE%A1%E5%88%86%E6%9E%90/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    两组独立二分类
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    生存分析
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    生存分析
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%94%9F%E5%AD%98%E5%88%86%E6%9E%90/1.%20%E7%94%9F%E5%AD%98%E5%88%86%E6%9E%90%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    基础概念
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 单组二分类数据在临床试验中为什么常见
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 从一个单臂肿瘤试验案例说起
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-xn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 率值的点估计：\(x/n\) ，简单，但不等于真实率
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 为什么必须报告置信区间
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-wald" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Wald 区间：最容易理解，也最容易误用
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-wilson-score" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Wilson 区间：更稳健的 score 思路
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-clopper-pearson" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Clopper-Pearson 精确区间：从二项分布反推真实率
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-bayesian-jeffreys" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Bayesian 和 Jeffreys 区间：另一种理解不确定性的方式
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-score" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. 与历史目标值比较：精确二项检验和 score 检验
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. 单组优效、非劣效和等效判断
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10. 单组优效、非劣效和等效判断">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#101" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.1 单组优效
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#102" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.2 单组非劣效
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#103" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.3 单组等效
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. 零事件、全事件和小样本问题
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. 零事件、全事件和小样本问题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#111" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.1 零事件不等于真实风险为零
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#112-100" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.2 全事件也不等于真实率为 100%
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#113" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.3 小样本下方法选择更重要
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. 单组分析的常见误区
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12. 单组分析的常见误区">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#121" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.1 只报告率值，不报告区间
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#122" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.2 把历史对照当成随机对照
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#123-p" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.3 只看 \(p\) 值，不看临床意义
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#124" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.4 事后选择目标值
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#125" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.5 忽视分母变化
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. 小结
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="导航栏" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="./" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    统计方法学
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="_1">单组二分类数据的统计分析</h1>
+<h2 id="1">1. 单组二分类数据在临床试验中为什么常见</h2>
+<p>在临床试验中，很多终点只有两个可能结果：发生或未发生、有效或无效、缓解或未缓解、成功或失败。这类数据通常称为二分类数据。</p>
+<p>如果试验只有一个治疗组，没有同期随机对照组，就形成了单组二分类数据。单组设计常见于以下场景：</p>
+<ul>
+<li>早期探索性临床试验，例如单臂 II 期肿瘤试验；</li>
+<li>罕见病研究，因为很难招募足够受试者进行大规模随机对照；</li>
+<li>医疗器械或诊断产品研究，例如操作成功率、检测成功率；</li>
+<li>与明确历史阈值比较的研究，例如某治疗的缓解率是否超过历史标准；</li>
+<li>安全性观察，例如某严重不良事件的发生率是否低于可接受上限。</li>
+</ul>
+<p>单组设计看起来简单：数一数有多少人发生目标事件，再除以总人数。但真正的统计问题并不止于此。我们通常还需要回答三个问题：</p>
+<ol>
+<li>这组人中事件发生率是多少？</li>
+<li>这个率值的不确定性有多大？</li>
+<li>这个率值是否足以支持某个临床判断，例如“值得继续开发”“达到最低有效水平”或“风险低于可接受上限”？</li>
+</ol>
+<p>这三个问题分别对应率值的点估计、区间估计和假设检验。本文聚焦单组二分类数据，重点讲清楚率值这一效应量的分析方法。后续涉及两组或多组时，才会进一步引入率差、率比和优势比。</p>
+<h2 id="2">2. 从一个单臂肿瘤试验案例说起</h2>
+<p>假设某单臂 II 期肿瘤试验评价一种新药的客观缓解率。研究纳入 50 例患者，其中 18 例达到客观缓解。</p>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th style="text-align: right;">数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>总例数</td>
+<td style="text-align: right;"><span class="arithmatex">\(n = 50\)</span></td>
+</tr>
+<tr>
+<td>缓解例数</td>
+<td style="text-align: right;"><span class="arithmatex">\(x = 18\)</span></td>
+</tr>
+<tr>
+<td>未缓解例数</td>
+<td style="text-align: right;"><span class="arithmatex">\(n - x = 32\)</span></td>
+</tr>
+<tr>
+<td>样本缓解率</td>
+<td style="text-align: right;"><span class="arithmatex">\(\hat p = 18 / 50 = 0.36 = 36\%\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>研究者还知道，历史上同类患者接受标准治疗的客观缓解率大约为 20%。于是自然会问：<strong>观察到 36% 的缓解率，是否说明新药有希望？</strong></p>
+<p>如果只看点估计，36% 明显高于 20%。但这个结论还不够。因为 36% 来自 50 例患者的样本，而不是总体真实缓解率。若重新招募另一批 50 例患者，观察到的缓解率可能是 30%、38%、42%，甚至更低或更高。</p>
+<p>所以，统计分析的任务不是简单地把 <span class="arithmatex">\(18 / 50\)</span> 算出来，而是要判断：</p>
+<ul>
+<li>36% 这个估计有多精确？</li>
+<li>真实缓解率可能处于什么范围？</li>
+<li>如果真实缓解率只有历史水平 20%，观察到 18 例或更多缓解的可能性有多大？</li>
+<li>这个结果是否足以支持进入下一阶段研究？</li>
+</ul>
+<p>后文所有方法都围绕这个案例逐步展开。</p>
+<h2 id="3-xn">3. 率值的点估计：<span class="arithmatex">\(x/n\)</span> ，简单，但不等于真实率</h2>
+<p>单组二分类数据最基本的效应量是率值，也就是目标事件发生的比例。若总例数为 <span class="arithmatex">\(n\)</span>，事件例数为 <span class="arithmatex">\(x\)</span>，样本率为：</p>
+<div class="arithmatex">\[
+\hat p = \frac{x}{n}
+\]</div>
+<p>在上面的肿瘤试验中：</p>
+<div class="arithmatex">\[
+\hat p = \frac{18}{50} = 0.36
+\]</div>
+<p>这表示在本研究样本中，有 36% 的患者达到客观缓解。</p>
+<p>这个计算非常简单，但有几个细节不能忽视。</p>
+<p>第一，要明确“事件”是什么。对于疗效终点，事件可能是缓解、应答、治愈、达到主要终点；对于安全性终点，事件可能是不良事件、严重不良事件、剂量限制性毒性或死亡。事件定义不同，率值含义就不同。</p>
+<p>第二，要明确分母是谁。分母可能是随机入组人群、接受至少一次治疗的人群、符合方案人群，或有可评价终点的人群。举例来说，如果 50 例入组患者中只有 45 例完成影像学评估，那么分母用 50 还是 45，会直接影响缓解率。</p>
+<p>第三，要明确缺失结局如何处理。若 5 例患者未完成疗效评估，可将其视为未缓解，也可只分析有评估者，还可使用插补方法。不同处理方式对应不同临床问题，不能事后随意选择。</p>
+<p>因此，<span class="arithmatex">\(x/n\)</span> 虽然是一个简单公式，但在临床试验报告中应至少写清楚：</p>
+<ul>
+<li><strong>事件定义</strong>：什么算发生事件？</li>
+<li><strong>分子</strong>：哪些受试者计为事件？</li>
+<li><strong>分母</strong>：哪些受试者纳入分析？</li>
+<li><strong>缺失</strong>：没有观察到结局者如何处理？</li>
+<li><strong>分析集</strong>：使用 FAS、ITT、PP 还是安全集？</li>
+</ul>
+<p>如果这些问题没有说清楚，率值本身就很难解释。</p>
+<h2 id="4">4. 为什么必须报告置信区间</h2>
+<p>点估计只告诉我们样本中发生了什么，置信区间则告诉我们这个估计有多不确定。</p>
+<p>继续使用肿瘤试验案例，样本量为 <span class="arithmatex">\(n = 50\)</span>，缓解例数为 <span class="arithmatex">\(x = 18\)</span>，样本缓解率为 <span class="arithmatex">\(\hat p = 36\%\)</span>。</p>
+<p>如果样本量是 500 例，180 例缓解，样本率也是 36%。但这两个结果的可信程度显然不同。50 例中的 18 例缓解，随机波动可能很大；500 例中的 180 例缓解，估计更稳定。</p>
+<p>置信区间正是用来表达这种不确定性的。一个 95% 置信区间可以粗略理解为：根据当前样本和统计模型，真实率值可能落在这个区间内。更严格地说，如果在相同条件下重复进行许多次研究，并每次用同一方法构造 95% 置信区间，那么长期来看，约 95% 的区间会覆盖真实率值。</p>
+<p>对单组率值来说，常用置信区间方法包括：</p>
+<ul>
+<li>Wald 区间；</li>
+<li>Wilson 区间；</li>
+<li>Clopper-Pearson 精确区间；</li>
+<li>Jeffreys 或其他 Bayesian 区间；</li>
+<li>logit 转换区间；</li>
+<li>mid-P 区间。</li>
+</ul>
+<p>这些方法并不是彼此孤立的技巧，而是从同一个问题出发：我们观察到 <span class="arithmatex">\(x\)</span> 个事件后，应该如何推断真实事件率 <span class="arithmatex">\(p\)</span>？</p>
+<p>下面从最容易理解的 Wald 区间开始。</p>
+<h2 id="5-wald">5. Wald 区间：最容易理解，也最容易误用</h2>
+<p>Wald 区间来自一个直观想法：样本率 <span class="arithmatex">\(\hat p\)</span> 是真实率 <span class="arithmatex">\(p\)</span> 的估计值；当样本量足够大时，<span class="arithmatex">\(\hat p\)</span> 近似服从正态分布。</p>
+<p>在二项分布下，样本率的标准误可以估计为：</p>
+<div class="arithmatex">\[
+SE(\hat p) = \sqrt{\frac{\hat p(1-\hat p)}{n}}
+\]</div>
+<p>于是 95% Wald 置信区间为：</p>
+<div class="arithmatex">\[
+\hat p \pm 1.96 \times SE(\hat p)
+\]</div>
+<p>代入案例数据：</p>
+<div class="arithmatex">\[
+\hat p = 0.36
+\]</div>
+<div class="arithmatex">\[
+SE(\hat p) = \sqrt{\frac{0.36 \times 0.64}{50}} = 0.0679
+\]</div>
+<div class="arithmatex">\[
+95\%CI = 0.36 \pm 1.96 \times 0.0679 = 0.36 \pm 0.133
+\]</div>
+<p>因此，Wald 方法给出的 95% 置信区间约为：22.7% 到 49.3%。</p>
+<p>这个方法很好理解，但有明显缺陷。</p>
+<p>第一，当样本量较小时，样本率的正态近似可能不好。二分类数据本质上是离散的，而 Wald 区间直接使用连续正态分布近似，可能覆盖率不足。</p>
+<p>第二，当事件率接近 0 或 1 时，Wald 区间表现很差。例如 20 例患者中 0 例发生严重不良事件，样本率为 0。按照 Wald 方法，95% CI为[0，0]：</p>
+<div class="arithmatex">\[
+\hat p = 0,\quad SE(\hat p) = \sqrt{\frac{0 \times 1}{20}} = 0
+\]</div>
+<p>这显然不合理。0 例事件并不意味着真实风险一定为 0，只能说明在 20 例样本中没有观察到事件。</p>
+<p>第三，Wald 区间可能超出 0 到 1 的合法范围。例如样本率很低时，区间下限可能为负；样本率很高时，区间上限可能超过 1。</p>
+<p>所以，Wald 区间适合作为理解置信区间的入门方法，但在正式临床试验分析中，尤其是小样本、罕见事件或接近全响应时，不宜作为首选方法。</p>
+<h2 id="6-wilson-score">6. Wilson 区间：更稳健的 score 思路</h2>
+<p>Wilson 区间可以看作是对 Wald 区间的一种重要改进。它的核心思想不是直接问“围绕样本率上下浮动多少”，而是反过来问：<strong>哪些真实率 <span class="arithmatex">\(p\)</span> 与当前观察结果并不矛盾？</strong></p>
+<p>这个思路来自 score 检验。对于某个候选真实率 <span class="arithmatex">\(p_0\)</span>，我们可以检验：</p>
+<div class="arithmatex">\[
+H_0: p = p_0
+\]</div>
+<p>如果某个 <span class="arithmatex">\(p_0\)</span> 与观察到的数据差异太大，就把它排除在置信区间之外；如果差异不大，就保留下来。把所有没有被排除的 <span class="arithmatex">\(p_0\)</span> 收集起来，就得到一个置信区间。</p>
+<p>这就是“检验反演”的思想。Wilson 区间正是基于 score 检验反演得到的。</p>
+<p>Wilson 95% 区间的形式可以写为：</p>
+<div class="arithmatex">\[
+\frac{\hat p + \frac{z^2}{2n} \pm z\sqrt{\frac{\hat p(1-\hat p)}{n} + \frac{z^2}{4n^2}}}{1+\frac{z^2}{n}}
+\]</div>
+<p>其中 <span class="arithmatex">\(z = 1.96\)</span>。</p>
+<p>这个公式比 Wald 稍复杂，但它有几个实际优点：</p>
+<ul>
+<li>区间通常不会越过 0 和 1；</li>
+<li>小样本时覆盖率比 Wald 更稳定；</li>
+<li>事件率接近 0 或 1 时仍能给出合理区间；</li>
+<li>在很多临床和流行病学场景中比 Wald 更推荐。</li>
+</ul>
+<p>对于案例数据 <span class="arithmatex">\(18/50\)</span>，Wilson 区间大约为：23.4% 到 50.9%。</p>
+<p>它与 Wald 区间相近，但不是简单地以 36% 为中心左右对称。这个不对称性是合理的，因为二项分布在率值接近边界时本来就不是对称的。</p>
+<p>Wilson 区间的直觉可以这样理解：它不仅考虑了样本率的波动，还考虑了候选真实率本身对方差的影响。因此，当样本量不大时，它比 Wald 更稳健。</p>
+<h2 id="7-clopper-pearson">7. Clopper-Pearson 精确区间：从二项分布反推真实率</h2>
+<p>Clopper-Pearson 区间常被称为精确二项置信区间。它不依赖正态近似，而是直接使用二项分布。</p>
+<p>二项分布告诉我们：如果真实事件率是 <span class="arithmatex">\(p\)</span>，总共观察 <span class="arithmatex">\(n\)</span> 例，那么发生 <span class="arithmatex">\(x\)</span> 例事件的概率为：</p>
+<div class="arithmatex">\[
+P(X=x)=\binom{n}{x}p^x(1-p)^{n-x}
+\]</div>
+<p>Clopper-Pearson 区间的基本想法是：寻找所有与观察结果 <span class="arithmatex">\(x\)</span> 不太矛盾的真实率 <span class="arithmatex">\(p\)</span>。</p>
+<p>它通过二项分布的尾部概率反推出区间上下限。对于双侧 95% 区间，下限大致是使得观察到 <span class="arithmatex">\(x\)</span> 个或更多事件的概率达到某个边界的 <span class="arithmatex">\(p\)</span>；上限则是使得观察到 <span class="arithmatex">\(x\)</span> 个或更少事件的概率达到某个边界的 <span class="arithmatex">\(p\)</span>。</p>
+<p>更常见的计算形式使用 Beta 分布分位数。若观察到 <span class="arithmatex">\(x\)</span> 个事件，总例数为 <span class="arithmatex">\(n\)</span>，双侧 <span class="arithmatex">\(100(1-\alpha)\%\)</span> Clopper-Pearson 区间为：</p>
+<div class="arithmatex">\[
+L = B^{-1}\left(\frac{\alpha}{2}; x, n-x+1\right)
+\]</div>
+<div class="arithmatex">\[
+U = B^{-1}\left(1-\frac{\alpha}{2}; x+1, n-x\right)
+\]</div>
+<p>其中 <span class="arithmatex">\(B^{-1}(q; a,b)\)</span> 表示参数为 <span class="arithmatex">\(a,b\)</span> 的 Beta 分布第 <span class="arithmatex">\(q\)</span> 分位数。实际分析时通常不需要手工计算这个公式，统计软件可以直接给出结果。重要的是理解其逻辑：它直接基于二项分布，而不是先把二项分布近似成正态分布。</p>
+<p>对于案例数据 <span class="arithmatex">\(18/50\)</span>，Clopper-Pearson 95% 区间大约为：22.9% 到 50.8%。</p>
+<p>这个区间和 Wilson 区间比较接近。但在更小样本或更极端数据下，Clopper-Pearson 往往更宽。</p>
+<p>为什么更宽？因为它通常是保守的。所谓保守，是指它的实际覆盖率常常高于标称的 95%。这听起来是优点，但代价是区间偏宽，研究结论可能更不容易达到统计显著。</p>
+<p>在以下场景中，Clopper-Pearson 区间经常被采用：</p>
+<ul>
+<li>样本量较小；</li>
+<li>事件数很少或接近全事件；</li>
+<li>单臂关键性研究；</li>
+<li>医疗器械研究；</li>
+<li>监管沟通中倾向采用保守方法的场景。</li>
+</ul>
+<p>如果研究目的是探索，Wilson 区间可能更均衡；如果研究结论将承担较强确认性含义，精确区间的保守性有时更容易被接受。</p>
+<h2 id="8-bayesian-jeffreys">8. Bayesian 和 Jeffreys 区间：另一种理解不确定性的方式</h2>
+<p>频率学置信区间回答的是：如果重复很多次研究，这套区间构造方法长期能覆盖真实率多少次。</p>
+<p>Bayesian 方法的表达更接近日常语言。它把真实率 <span class="arithmatex">\(p\)</span> 看作未知量，在观察数据后给出 <span class="arithmatex">\(p\)</span> 的后验分布。后验区间可以解释为：在模型和先验给定的条件下，真实率有 95% 的后验概率位于该区间内。</p>
+<p>单组二分类数据的 Bayesian 分析通常使用 Beta-Binomial 模型：</p>
+<div class="arithmatex">\[
+p \sim Beta(a,b)
+\]</div>
+<div class="arithmatex">\[
+x \sim Binomial(n,p)
+\]</div>
+<div class="arithmatex">\[
+p|x \sim Beta(a+x,b+n-x)
+\]</div>
+<p>如果使用均匀先验 <span class="arithmatex">\(Beta(1,1)\)</span>，案例数据的后验为：</p>
+<div class="arithmatex">\[
+p|x \sim Beta(1+18,1+32)=Beta(19,33)
+\]</div>
+<p>如果使用 Jeffreys 先验 <span class="arithmatex">\(Beta(0.5,0.5)\)</span>，后验为：</p>
+<div class="arithmatex">\[
+p|x \sim Beta(18.5,32.5)
+\]</div>
+<p>Jeffreys 区间在单组二项率问题中很常见，因为它既有 Bayesian 解释，也通常具有较好的频率学覆盖表现。</p>
+<p>Bayesian 方法特别适合以下场景：</p>
+<ul>
+<li>罕见病、小样本研究；</li>
+<li>希望借用历史数据；</li>
+<li>适应性设计；</li>
+<li>希望直接表达“治疗有效率超过某阈值的概率”；</li>
+<li>决策问题，例如是否进入下一阶段研究。</li>
+</ul>
+<p>例如，在案例中我们可以计算：</p>
+<div class="arithmatex">\[
+P(p &gt; 0.20 | 当前数据)
+\]</div>
+<p>这表示在观察到 <span class="arithmatex">\(18/50\)</span> 缓解后，真实缓解率超过历史水平 20% 的后验概率。这个表达对临床决策很直观。</p>
+<p>但 Bayesian 方法的关键是先验。若先验包含历史信息，必须说明历史数据来源、可比性、借用强度和敏感性分析。否则，读者很难判断结果是否主要由当前数据支持，还是被先验强烈影响。</p>
+<p>在常规频率学临床试验报告中，Bayesian 区间可作为补充；在明确采用 Bayesian 设计的试验中，它可以成为主要分析方法。</p>
+<h2 id="9-score">9. 与历史目标值比较：精确二项检验和 score 检验</h2>
+<p>单组试验常常不是只想估计一个率，而是希望判断它是否高于某个目标值。</p>
+<p>继续看案例。历史标准治疗的客观缓解率约为 20%。研究者希望判断新药是否优于这个最低期望水平。可以设定：</p>
+<div class="arithmatex">\[
+H_0: p \le 0.20
+\]</div>
+<div class="arithmatex">\[
+H_1: p &gt; 0.20
+\]</div>
+<p>其中 <span class="arithmatex">\(p\)</span> 是新药真实客观缓解率。</p>
+<p>这个假设的含义是：</p>
+<ul>
+<li><strong>零假设</strong>：新药真实缓解率不超过 20%，没有显示出超过历史水平的疗效；</li>
+<li><strong>备择假设</strong>：新药真实缓解率超过 20%，值得进一步研究。</li>
+</ul>
+<p>最直接的方法是精确二项检验。它会问：如果真实缓解率只有 20%，在 50 例患者中观察到 18 例或更多缓解的概率是多少？</p>
+<p>这个概率就是单侧 <span class="arithmatex">\(p\)</span> 值：</p>
+<div class="arithmatex">\[
+P(X \ge 18 | n=50, p=0.20)
+\]</div>
+<p>如果这个概率很小，例如小于 0.025 或 0.05，就说明在真实率只有 20% 的情况下，观察到当前或更极端结果并不容易，于是倾向拒绝零假设。</p>
+<p>精确二项检验的优点是逻辑清楚，不依赖大样本近似。缺点是可能偏保守，尤其在样本量较小或显著性水平要求严格时。</p>
+<p>另一类方法是 score 检验。它把样本率与目标率的差异标准化：</p>
+<div class="arithmatex">\[
+Z = \frac{\hat p - p_0}{\sqrt{p_0(1-p_0)/n}}
+\]</div>
+<p>注意这里的标准误使用的是零假设下的 <span class="arithmatex">\(p_0\)</span>，而不是样本率 <span class="arithmatex">\(\hat p\)</span>。这点很重要。因为检验的问题是“如果真实率为 <span class="arithmatex">\(p_0\)</span>，当前结果有多极端”，所以方差也应在 <span class="arithmatex">\(p_0\)</span> 下计算。</p>
+<p>代入案例：</p>
+<div class="arithmatex">\[
+\hat p = 0.36,\quad p_0 = 0.20,\quad n = 50
+\]</div>
+<div class="arithmatex">\[
+SE_0 = \sqrt{\frac{0.20 \times 0.80}{50}} = 0.0566
+\]</div>
+<div class="arithmatex">\[
+Z = \frac{0.36 - 0.20}{0.0566} = 2.83
+\]</div>
+<p><span class="arithmatex">\(Z\)</span> 值越大，说明观察结果越不支持 <span class="arithmatex">\(p = 0.20\)</span>。</p>
+<p>Wald 检验也可以做类似比较，但它通常使用样本率下的标准误：</p>
+<div class="arithmatex">\[
+SE_{\hat p} = \sqrt{\frac{\hat p(1-\hat p)}{n}}
+\]</div>
+<p>在小样本或率值接近边界时，Wald 检验表现不如 score 检验稳定。</p>
+<p>置信区间和假设检验之间有密切关系。对于单侧优效检验，如果 95% 双侧置信区间的下限高于目标值 20%，通常可以支持真实率高于 20% 的结论。但要注意单侧和双侧显著性水平的对应关系。例如单侧 2.5% 检验通常对应双侧 95% 置信区间。</p>
+<h2 id="10">10. 单组优效、非劣效和等效判断</h2>
+<p>单组二分类终点不只用于“是否高于历史水平”，也可能用于非劣效或等效判断。</p>
+<h3 id="101">10.1 单组优效</h3>
+<p>优效问题最常见：</p>
+<div class="arithmatex">\[
+H_0: p \le p_0
+\]</div>
+<div class="arithmatex">\[
+H_1: p &gt; p_0
+\]</div>
+<p>例如，历史客观缓解率为 20%，研究希望证明新药真实缓解率高于 20%。如果观察到的缓解率足够高，并且置信区间下限也高于 20%，就能更有说服力地支持优效判断。</p>
+<h3 id="102">10.2 单组非劣效</h3>
+<p>非劣效问题关注的是“不要差到不可接受”。例如某新给药方式更方便，但希望确认其成功率不比历史标准低太多。</p>
+<p>假设历史成功率为 90%，临床上认为最多可接受降低 10 个百分点，则最低可接受成功率为 80%。可设：</p>
+<div class="arithmatex">\[
+H_0: p \le 0.80
+\]</div>
+<div class="arithmatex">\[
+H_1: p &gt; 0.80
+\]</div>
+<p>这里虽然形式上也是“高于某阈值”，但临床含义不同。阈值 80% 不是历史疗效本身，而是扣除非劣效界值后的最低可接受水平。</p>
+<p>非劣效分析最关键的是界值的合理性。界值不能只由统计便利决定，而应基于历史证据、临床可接受损失、治疗便利性、安全性和监管要求。</p>
+<h3 id="103">10.3 单组等效</h3>
+<p>等效问题要求真实率落在一个可接受范围内。例如某诊断流程的成功率应接近已知标准，不能明显低，也不能异常高到提示定义或流程差异。</p>
+<p>可以设定等效范围：</p>
+<div class="arithmatex">\[
+L &lt; p &lt; U
+\]</div>
+<p>例如：</p>
+<div class="arithmatex">\[
+0.85 &lt; p &lt; 0.95
+\]</div>
+<p>等效通常可用双单侧检验或置信区间法判断。如果整个置信区间都落在预设等效范围内，就支持等效。</p>
+<p>先看双单侧检验，也就是 TOST。等效不是要证明“真实率刚好等于某个值”，而是要证明真实率没有低到不可接受，也没有高到超出预设范围。换句话说，等效同时包含两个方向的要求：</p>
+<div class="arithmatex">\[
+p &gt; L
+\]</div>
+<p>以及：</p>
+<div class="arithmatex">\[
+p &lt; U
+\]</div>
+<p>因此，TOST 会把一个等效问题拆成两个单侧检验。</p>
+<p>第一个检验用于排除“真实率太低”：</p>
+<div class="arithmatex">\[
+H_{01}: p \le L
+\]</div>
+<div class="arithmatex">\[
+H_{11}: p &gt; L
+\]</div>
+<p>第二个检验用于排除“真实率太高”：</p>
+<div class="arithmatex">\[
+H_{02}: p \ge U
+\]</div>
+<div class="arithmatex">\[
+H_{12}: p &lt; U
+\]</div>
+<p>只有当这两个单侧检验都拒绝各自的零假设时，才可以认为真实率落在 <span class="arithmatex">\((L, U)\)</span> 这个可接受范围内，从而支持等效。</p>
+<p>用刚才的例子，如果等效范围是 <span class="arithmatex">\(0.85 &lt; p &lt; 0.95\)</span>，那么 TOST 实际上是在同时回答两个问题：</p>
+<ul>
+<li>当前数据是否足以说明真实成功率高于 85%？</li>
+<li>当前数据是否足以说明真实成功率低于 95%？</li>
+</ul>
+<p>这两个问题必须同时成立。只证明高于 85%，不能说明等效，因为真实率可能高于 95%；只证明低于 95%，也不能说明等效，因为真实率可能低于 85%。</p>
+<p>再看置信区间法。置信区间法的判定更直观：先根据观察数据计算真实率 <span class="arithmatex">\(p\)</span> 的置信区间，然后看整个区间是否完全落在预设等效范围内。</p>
+<p>如果采用单侧显著性水平 <span class="arithmatex">\(\alpha\)</span> 的 TOST，通常对应使用双侧 <span class="arithmatex">\(100(1-2\alpha)\%\)</span> 置信区间来判断。例如每个单侧检验使用 <span class="arithmatex">\(\alpha = 0.05\)</span>，则对应双侧 90% 置信区间；如果每个单侧检验使用 <span class="arithmatex">\(\alpha = 0.025\)</span>，则对应双侧 95% 置信区间。</p>
+<p>判定规则可以概括为：</p>
+<div class="arithmatex">\[
+CI_{lower} &gt; L \quad \text{且} \quad CI_{upper} &lt; U
+\]</div>
+<p>也就是说，置信区间下限要高于等效下界，置信区间上限要低于等效上界。</p>
+<p>举例来说，若某诊断流程研究观察到成功率为 90%，预设等效范围为 85% 到 95%。如果计算得到的 90% 置信区间为 86% 到 94%，则整个区间都在 85% 到 95% 之间，可以支持等效。如果区间为 83% 到 94%，虽然点估计仍是 90%，但区间下限低于 85%，说明不能排除真实成功率低到不可接受，因此不能支持等效。如果区间为 86% 到 97%，则不能排除真实成功率高于上界，也不能支持预设意义下的等效。</p>
+<p>TOST 和置信区间法本质上是同一套逻辑的两种表达。TOST 从“两个单侧检验都要显著”出发，置信区间法从“整个区间都要落入等效范围”出发。实际写报告时，置信区间法通常更容易被非统计读者理解；但在方案和统计分析计划中，最好同时写清楚检验假设、显著性水平、置信区间水平和等效判定规则。</p>
+<p>不过，在单组场景下，等效判断需要特别谨慎。因为没有同期对照组，历史标准和当前试验之间的差异可能来自人群、评估方式、中心经验或随访时间，而不一定来自治疗本身。</p>
+<h2 id="11">11. 零事件、全事件和小样本问题</h2>
+<p>单组二分类分析中最容易出问题的场景，是零事件、全事件和小样本。</p>
+<h3 id="111">11.1 零事件不等于真实风险为零</h3>
+<p>假设某器械研究纳入 20 例患者，未观察到任何严重器械相关不良事件：</p>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th style="text-align: right;">数值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>总例数</td>
+<td style="text-align: right;"><span class="arithmatex">\(n = 20\)</span></td>
+</tr>
+<tr>
+<td>事件例数</td>
+<td style="text-align: right;"><span class="arithmatex">\(x = 0\)</span></td>
+</tr>
+<tr>
+<td>样本事件率</td>
+<td style="text-align: right;"><span class="arithmatex">\(\hat p = 0\%\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>不能据此说“严重不良事件发生率为 0”。更准确的说法是：本研究中未观察到严重不良事件，但由于样本量有限，仍不能排除真实风险达到一定水平。</p>
+<p>使用精确 95% 置信区间时，<span class="arithmatex">\(0/20\)</span> 的上限大约为 16.8%。这意味着，即使观察到 0 例事件，真实发生率仍可能不是很低。</p>
+<p>实践中常有一个粗略规则，称为 rule of three：如果 <span class="arithmatex">\(n\)</span> 例中观察到 0 例事件，则 95% 置信区间上限大约为：</p>
+<div class="arithmatex">\[
+\frac{3}{n}
+\]</div>
+<p>对于 <span class="arithmatex">\(n = 20\)</span>：</p>
+<div class="arithmatex">\[
+\frac{3}{20} = 15\%
+\]</div>
+<p>这个近似和精确区间上限 16.8% 接近。它提醒我们：样本量小的时候，零事件并不能证明风险极低。</p>
+<h3 id="112-100">11.2 全事件也不等于真实率为 100%</h3>
+<p>如果 20 例患者全部操作成功，则 <span class="arithmatex">\(n = 20\)</span>，<span class="arithmatex">\(x = 20\)</span>，<span class="arithmatex">\(\hat p = 100\%\)</span>。同样不能说真实成功率一定为 100%。精确区间的下限会明显低于 100%。这说明未来更大样本中仍可能出现失败。</p>
+<h3 id="113">11.3 小样本下方法选择更重要</h3>
+<p>小样本时，Wald 区间可能非常误导。比如 <span class="arithmatex">\(n = 10\)</span>，<span class="arithmatex">\(x = 1\)</span>，<span class="arithmatex">\(\hat p = 10\%\)</span>。Wald 区间可能给出负的下限，而真实率不可能为负。Wilson 或精确区间更合理。</p>
+<p>因此，单组小样本研究中建议：</p>
+<ul>
+<li>不把普通 Wald 区间作为主要区间估计方法；</li>
+<li>优先考虑 Wilson、Clopper-Pearson 或 Jeffreys 区间；</li>
+<li>对零事件和全事件单独说明；</li>
+<li>在结论中避免过度肯定；</li>
+<li>设计阶段充分考虑样本量与区间宽度。</li>
+</ul>
+<h2 id="12">12. 单组分析的常见误区</h2>
+<h3 id="121">12.1 只报告率值，不报告区间</h3>
+<p>“缓解率为 36%”信息不完整。读者不知道这个估计有多稳定，也不知道真实缓解率可能低到什么程度。正式报告应写成类似：</p>
+<blockquote>
+<p>客观缓解率为 36.0%（18/50），95% CI：约 23% 到 51%。</p>
+</blockquote>
+<h3 id="122">12.2 把历史对照当成随机对照</h3>
+<p>单组试验常与历史数据比较，但历史对照不是同期随机对照。差异可能来自：</p>
+<ul>
+<li>入排标准不同；</li>
+<li>疾病严重程度不同；</li>
+<li>既往治疗线数不同；</li>
+<li>终点评估标准不同；</li>
+<li>影像评估频率不同；</li>
+<li>支持治疗不同；</li>
+<li>中心和地区不同。</li>
+</ul>
+<p>因此，即使单组率值显著高于历史阈值，也不能完全等同于随机对照试验证明疗效。</p>
+<h3 id="123-p">12.3 只看 <span class="arithmatex">\(p\)</span> 值，不看临床意义</h3>
+<p>如果样本量很大，一个很小的差异也可能有统计显著性；如果样本量很小，一个临床上重要的差异也可能不显著。因此应同时看：</p>
+<ul>
+<li>点估计是否达到临床期望；</li>
+<li>置信区间是否排除无临床价值的范围；</li>
+<li><span class="arithmatex">\(p\)</span> 值是否支持预设假设；</li>
+<li>结果是否与安全性、持续时间、亚组表现一致。</li>
+</ul>
+<h3 id="124">12.4 事后选择目标值</h3>
+<p>如果研究完成后才根据结果选择历史阈值，结论会有明显偏倚。目标值、非劣效界值或等效范围应在方案或统计分析计划中预先规定。</p>
+<h3 id="125">12.5 忽视分母变化</h3>
+<p>如果入组 50 例，只有 45 例可评价，报告 <span class="arithmatex">\(18/45 = 40\%\)</span> 还是 <span class="arithmatex">\(18/50 = 36\%\)</span>，结论可能不同。应清楚说明主要分析采用哪个分母，并对缺失或不可评价者做敏感性分析。</p>
+<h2 id="13">13. 小结</h2>
+<p>单组二分类数据的统计分析表面上很简单，本质上却包含完整的统计推断逻辑。</p>
+<p>首先，率值的点估计是 <span class="arithmatex">\(x/n\)</span>，但这个数字只描述当前样本，并不等于真实率。其次，置信区间用于表达不确定性。Wald 区间最直观，但在小样本、低事件率或高事件率时容易出问题；Wilson 区间基于 score 思路，更稳健；Clopper-Pearson 精确区间直接基于二项分布，通常更保守；Bayesian 和 Jeffreys 区间则提供了另一种概率解释。</p>
+<p>常用单组率值区间估计方法可以这样比较：</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>基本原理</th>
+<th>优点</th>
+<th>局限</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Wald 区间</td>
+<td>利用样本率的正态近似，按 <span class="arithmatex">\(\hat p \pm z \times SE\)</span> 构造区间</td>
+<td>最直观，计算简单，便于教学理解</td>
+<td>小样本、低事件率、高事件率时覆盖率差，可能越过 0 或 1</td>
+<td>大样本且率值远离 0 和 1 时可作粗略参考，不建议作为关键研究首选</td>
+</tr>
+<tr>
+<td>Wilson 区间</td>
+<td>基于 score 检验反演，寻找与观察结果不矛盾的真实率</td>
+<td>覆盖率较稳定，边界表现好，通常不越界</td>
+<td>公式比 Wald 复杂，解释需要引入检验反演思想</td>
+<td>中小样本、常规单组率报告、希望兼顾稳健性和区间宽度时</td>
+</tr>
+<tr>
+<td>Clopper-Pearson 精确区间</td>
+<td>直接基于二项分布尾部概率反推真实率范围</td>
+<td>不依赖正态近似，保守，监管场景容易接受</td>
+<td>区间常偏宽，实际覆盖率可能高于标称水平</td>
+<td>小样本、零事件、全事件、单臂关键性研究、医疗器械研究</td>
+</tr>
+<tr>
+<td>Jeffreys 区间</td>
+<td>使用 <span class="arithmatex">\(Beta(0.5,0.5)\)</span> 先验得到后验区间</td>
+<td>边界表现较好，兼具 Bayesian 解释和较好频率学性质</td>
+<td>需要接受先验设定；在传统频率学报告中需说明定位</td>
+<td>小样本、补充分析、希望用 Bayesian 语言解释不确定性时</td>
+</tr>
+<tr>
+<td>Bayesian 区间</td>
+<td>指定先验后，根据 Beta-Binomial 模型得到后验分布</td>
+<td>可直接表达 <span class="arithmatex">\(P(p&gt;p_0\mid data)\)</span> 等决策概率，可借用历史信息</td>
+<td>结果依赖先验；借用历史信息时需做敏感性分析</td>
+<td>罕见病、适应性设计、外部信息借用、研发决策分析</td>
+</tr>
+<tr>
+<td>logit 转换区间</td>
+<td>对 <span class="arithmatex">\(logit(p)\)</span> 建区间后再反变换</td>
+<td>区间天然落在 0 到 1 内</td>
+<td>极端事件数时仍可能不稳定，解释不如 Wilson 直观</td>
+<td>率值不太接近边界、需要模型化或转换稳定性时</td>
+</tr>
+<tr>
+<td>mid-P 区间</td>
+<td>在精确方法基础上减少一部分保守性</td>
+<td>通常比 Clopper-Pearson 更短，功效更好</td>
+<td>严格覆盖性质不如传统精确区间</td>
+<td>探索性分析或希望减少精确法过度保守时</td>
+</tr>
+</tbody>
+</table>
+<p>单组试验常需要与历史目标值比较。精确二项检验和 score 检验都可以回答“如果真实率只有目标值，当前结果是否足够罕见”这个问题。优效、非劣效和等效本质上都需要预先定义临床阈值，并用置信区间或假设检验支持判断。</p>
+<p>常用单组假设检验方法对比如下：</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>基本原理</th>
+<th>优点</th>
+<th>局限</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>精确二项检验</td>
+<td>在零假设率 <span class="arithmatex">\(p_0\)</span> 下，直接计算观察到当前或更极端事件数的二项概率</td>
+<td>逻辑清楚，不依赖大样本近似，小样本可用</td>
+<td>可能偏保守；离散性导致显著性水平不易精确等于名义值</td>
+<td>小样本、单臂肿瘤试验、器械研究、与固定历史阈值比较</td>
+</tr>
+<tr>
+<td>score 检验</td>
+<td>在零假设 <span class="arithmatex">\(p=p_0\)</span> 下计算标准误，将 <span class="arithmatex">\(\hat p-p_0\)</span> 标准化</td>
+<td>比 Wald 稳定，与 Wilson 区间逻辑衔接紧密</td>
+<td>仍是近似方法，极小样本时不如精确法稳妥</td>
+<td>中等或较大样本、优效或非劣效阈值检验</td>
+</tr>
+<tr>
+<td>Wald 检验</td>
+<td>使用样本率下的标准误评估 <span class="arithmatex">\(\hat p\)</span> 与 <span class="arithmatex">\(p_0\)</span> 的差异</td>
+<td>形式简单，便于理解</td>
+<td>小样本和边界率值下不稳定，与 Wald 区间类似</td>
+<td>仅适合作为教学或粗略参考，不建议关键分析首选</td>
+</tr>
+<tr>
+<td>似然比检验</td>
+<td>比较零假设模型与备择模型下的二项似然</td>
+<td>统计理论性质好，和模型框架衔接自然</td>
+<td>计算和解释略复杂，小样本仍可能需要谨慎</td>
+<td>模型化分析、需要与 GLM 或似然框架保持一致时</td>
+</tr>
+<tr>
+<td>TOST 双单侧检验</td>
+<td>将等效拆成 <span class="arithmatex">\(p&gt;L\)</span> 和 <span class="arithmatex">\(p&lt;U\)</span> 两个单侧检验，二者都成立才支持等效</td>
+<td>等效逻辑清楚，能同时排除过低和过高</td>
+<td>对等效界值依赖强；单组场景中历史可比性仍是关键问题</td>
+<td>单组等效判断，尤其已有明确可接受范围时</td>
+</tr>
+<tr>
+<td>置信区间法</td>
+<td>判断率值置信区间是否完全落入优效、非劣效或等效要求范围</td>
+<td>直观，便于临床解释，可同时展示效应大小和不确定性</td>
+<td>需要正确匹配单侧/双侧显著性水平和区间水平</td>
+<td>方案、SAP 和临床报告中最推荐配合检验一起呈现</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.path", "navigation.top"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

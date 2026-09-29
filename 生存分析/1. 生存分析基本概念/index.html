@@ -1,0 +1,1142 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../%E7%BB%9F%E8%AE%A1%E6%96%B9%E6%B3%95%E5%AD%A6/02_%E4%B8%A4%E7%BB%84%E7%8B%AC%E7%AB%8B%E4%BA%8C%E5%88%86%E7%B1%BB%E6%95%B0%E6%8D%AE%E7%9A%84%E7%BB%9F%E8%AE%A1%E5%88%86%E6%9E%90/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>基础概念 - 生物统计笔记</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="生物统计笔记" class="md-header__button md-logo" aria-label="生物统计笔记" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            生物统计笔记
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              基础概念
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../%E7%BB%9F%E8%AE%A1%E6%96%B9%E6%B3%95%E5%AD%A6/01_%E5%8D%95%E7%BB%84%E4%BA%8C%E5%88%86%E7%B1%BB%E6%95%B0%E6%8D%AE%E7%9A%84%E7%BB%9F%E8%AE%A1%E5%88%86%E6%9E%90/" class="md-tabs__link">
+          
+  
+  
+  统计方法学
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+  生存分析
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="生物统计笔记" class="md-nav__button md-logo" aria-label="生物统计笔记" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    生物统计笔记
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    统计方法学
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    统计方法学
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%BB%9F%E8%AE%A1%E6%96%B9%E6%B3%95%E5%AD%A6/01_%E5%8D%95%E7%BB%84%E4%BA%8C%E5%88%86%E7%B1%BB%E6%95%B0%E6%8D%AE%E7%9A%84%E7%BB%9F%E8%AE%A1%E5%88%86%E6%9E%90/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    单组二分类
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../%E7%BB%9F%E8%AE%A1%E6%96%B9%E6%B3%95%E5%AD%A6/02_%E4%B8%A4%E7%BB%84%E7%8B%AC%E7%AB%8B%E4%BA%8C%E5%88%86%E7%B1%BB%E6%95%B0%E6%8D%AE%E7%9A%84%E7%BB%9F%E8%AE%A1%E5%88%86%E6%9E%90/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    两组独立二分类
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    生存分析
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    生存分析
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    基础概念
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    基础概念
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 什么是生存分析？
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 删失数据
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 生存函数和风险函数
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 生存函数和风险函数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-st" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 生存函数：S(t)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-ht" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 风险函数：h(t)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-st-ht" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 S(t) 和 h(t) 的关系
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 生存分析的目标
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 生存时间的描述性度量
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 删失假设
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. 删失假设">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 独立删失
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 随机删失
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 非信息删失
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4 总结
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 什么是生存分析？
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 删失数据
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 生存函数和风险函数
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. 生存函数和风险函数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-st" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1 生存函数：S(t)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-ht" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2 风险函数：h(t)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-st-ht" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3 S(t) 和 h(t) 的关系
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 生存分析的目标
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. 生存时间的描述性度量
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. 删失假设
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. 删失假设">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 独立删失
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 随机删失
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 非信息删失
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4 总结
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="导航栏" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="./" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    生存分析
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="_1">生存分析基本概念</h1>
+<h2 id="1">1. 什么是生存分析？</h2>
+<p>通常，生存分析是针对<strong>结果变量是事件发生时间</strong>的一类数据分析统计方法的集合。</p>
+<blockquote>
+<p>所谓<strong>时间</strong>，指的是从个体开始随访直到事件发生所经过的年、月、周或天数；或者，时间也可以指个体发生事件时的年龄。</p>
+<p>所谓<strong>事件</strong>，指的是死亡、疾病发生、缓解后复发、康复（例如，重返工作岗位）或个体可能发生的任何指定感兴趣的经历。</p>
+</blockquote>
+<p>虽然在同一次分析中可以考虑多个事件，但我们将假设只有一个指定的事件是感兴趣的。</p>
+<p>当考虑多个事件时（例如，由多种原因导致的死亡），统计问题可以被描述为复发事件问题或竞争风险问题。</p>
+<p><img alt="" src="../images/1-1.png" /></p>
+<p>在生存分析中，我们通常将时间变量称为<strong>生存时间</strong>，因为它给出了个体在某个随访期内“存活”的时间。我们通常也将事件称为<strong>失败</strong>，因为感兴趣的事件通常是死亡、疾病发生或其他一些负面的个体经历。</p>
+<p><img alt="" src="../images/1-2.png" /></p>
+<h2 id="2">2. 删失数据</h2>
+<p><strong><u>删失</u></strong>：我们拥有个体生存时间的部分信息，但并不知道其确切的生存时间。</p>
+<p><strong><u>为什么会出现删失？</u></strong></p>
+<ul>
+<li>个体在研究结束前未发生事件；</li>
+<li>个体在研究期间失访；</li>
+<li>个体因死亡（如果死亡不是感兴趣的事件）或其他原因（例如，药物不良反应或其他竞争风险）退出研究。</li>
+</ul>
+<p><strong><u>右删失</u></strong>：真实的生存时间大于或等于观察到的生存时间。</p>
+<p><img alt="Right censored" src="../images/1-3.png" /></p>
+<p><strong><u>左删失</u></strong>：真实的生存时间小于或等于观察到的生存时间。</p>
+<p><img alt="Left censored" src="../images/1-4.png" /></p>
+<p><strong><u>区间删失</u></strong>：真实的生存时间在一个已知的时间区间内。</p>
+<p><img alt="Interval censored" src="../images/1-5.png" /></p>
+<p><strong><u>我们如何处理删失数据？</u></strong></p>
+<p>生存分析<strong>使用直到删失时间为止的所有信息</strong>；不会丢弃信息。</p>
+<p><img alt="" src="../images/1-15.png" /></p>
+<p>对于在第16周和第22周之间被删失的三个人，我们不想丢失他们每个人至少16周的生存信息。</p>
+<p>这三个人被包含在第16周之前（包括第16周）的所有风险集中；也就是说，他们每个人在第16周之前都有发生事件的风险。任何在16周之前（包括16周）确定的生存概率都应该使用这三个人以及其他在前16周内处于风险中的人的数据。</p>
+<h2 id="3">3. 生存函数和风险函数</h2>
+<blockquote>
+<p><strong>关键符号：</strong></p>
+<ul>
+<li><strong>T</strong> 表示生存时间变量</li>
+<li><strong>t</strong> 表示 <strong>T</strong> 的某个指定值</li>
+<li><strong>d</strong> 表示指示事件发生(1)或删失(0)的二值变量</li>
+</ul>
+</blockquote>
+<h3 id="31-st">3.1 生存函数：S(t)</h3>
+<p>生存函数 S(t) 给出了一个人存活时间超过某个指定时间 t 的概率：也就是说，S(t) 给出了<strong>随机变量 T 超过指定时间 t 的概率</strong>。
+$$
+S(t)=P(T&gt;t)
+$$
+理论上，当 <span class="arithmatex">\(t\)</span> 从 0 变化到无穷大时，生存函数可以绘制成一条平滑的曲线。</p>
+<p><img alt="Theoretical Survivor Function" src="../images/1-6.png" /></p>
+<p>在实践中，使用实际数据时，我们通常得到的是<strong>阶梯函数</strong>的图形，如图所示，而不是平滑曲线。此外，由于研究期限并非无限长，并且可能存在导致失败的竞争风险，研究中并非每个人都会发生事件。因此，估计的生存函数在研究结束时可能不会完全下降到零。</p>
+<p><img alt="" src="../images/1-7.png" /></p>
+<h3 id="32-ht">3.2 风险函数：h(t)</h3>
+<p>风险函数 h(t) 给出了在个体已存活到时间 t 的条件下，事件在单位时间内发生的瞬时可能性。
+$$
+h(t)=\lim_{\Delta t \to 0} \frac{P(t \le T &lt; t+\Delta t|T\ge t)}{\Delta t}
+$$
+风险函数（有时称为<strong>条件事件率</strong>）是<strong>一个比率，而不是概率</strong>。</p>
+<p>此外需注意，风险的大小会受时间的度量单位（日、周、月、年等）影响。</p>
+<p><img alt="" src="../images/1-8.png" /></p>
+<p>风险函数总是非负的，即大于或等于零，并且没有上限。</p>
+<p><strong><u>不同类型的风险函数</u></strong></p>
+<ul>
+<li>
+<p>当风险函数为常数时，我们称该生存模型为<strong>指数</strong>模型。</p>
+<p><img alt="" src="../images/1-9.png" /></p>
+</li>
+<li>
+<p>当风险函数随时间增加时，我们称之为<strong>递增Weibull</strong>模型。</p>
+<p><img alt="" src="../images/1-10.png" /></p>
+</li>
+<li>
+<p>当风险函数随时间减少时，我们称之为<strong>递减Weibull</strong>模型。</p>
+<p><img alt="" src="../images/1-11.png" /></p>
+</li>
+<li>
+<p>当风险函数先增加后减少时，我们称之为<strong>对数正态生存</strong>模型。</p>
+<p><img alt="" src="../images/1-12.png" /></p>
+</li>
+</ul>
+<h3 id="33-st-ht">3.3 S(t) 和 h(t) 的关系</h3>
+<blockquote>
+<p>S(t): 直接描述生存情况</p>
+<p>h(t):</p>
+<ul>
+<li>瞬时可能性的度量</li>
+<li>识别特定的模型形式</li>
+<li>生存分析的数学模型</li>
+</ul>
+</blockquote>
+<p>如果你知道两者之一，就可以确定另一个。一般公式：
+$$
+S(t)=\exp \left[-\int_0^t h(u)du \right] \
+h(t)=-\left[\frac{dS(t)/dt}{S(t)}\right]
+$$</p>
+<h2 id="4">4. 生存分析的目标</h2>
+<p><strong>目标1：</strong> 从生存数据中估计并解释生存函数和/或风险函数。</p>
+<p><img alt="" src="../images/1-13.png" /></p>
+<p><strong>目标2：</strong> 比较生存函数和/或风险函数。</p>
+<p><img alt="" src="../images/1-14.png" /></p>
+<p><strong>目标3：</strong> 评估解释变量与生存时间的关系。</p>
+<p>目标3通常需要使用某种形式的数学模型，例如Cox比例风险模型。</p>
+<h2 id="5">5. 生存时间的描述性度量</h2>
+<p><img alt="" src="../images/1-16.png" /></p>
+<p><span class="arithmatex">\(\bar T\)</span>: (<strong>平均生存时间</strong>) 忽略表示删失的加号(+)，简单地计算每组所有生存时间的平均值。</p>
+<p><span class="arithmatex">\(\bar h\)</span>: (<strong>平均风险率</strong>) 定义为总事件数除以观察到的生存时间之和。
+$$
+\bar h=\frac{事件数}{\sum\limits_{i=1}^n t_i}
+$$
+描述性度量（<span class="arithmatex">\(\bar T\)</span> 和 <span class="arithmatex">\(\bar h\)</span>）提供了<strong>总体比较</strong>；它们不提供随时间变化的比较（这由生存曲线图提供）。</p>
+<p><img alt="" src="../images/1-17.png" /></p>
+<h2 id="6">6. 删失假设</h2>
+<blockquote>
+<p>对于生存数据，通常考虑三种关于删失的假设：</p>
+<ul>
+<li><strong>独立</strong>（相对于非独立）删失</li>
+<li><strong>随机</strong>（相对于非随机）删失</li>
+<li><strong>非信息</strong>（相对于信息）删失</li>
+</ul>
+</blockquote>
+<h3 id="61">6.1 独立删失</h3>
+<p>在任何感兴趣的亚组内，在时间 t 被删失的个体，其生存情况能代表该亚组中所有在时间 t 仍处于风险的个体。</p>
+<p>独立删失假设是最有用的一个，且会影响效应估计的有效性。</p>
+<p><img alt="" src="../images/1-18.png" /></p>
+<h3 id="62">6.2 随机删失</h3>
+<p>在时间 t 被删失的个体，其生存情况能代表所有在时间 t 仍处于风险的研究对象。</p>
+<p><img alt="" src="../images/1-19.png" /></p>
+<p><strong><u>一个例子</u></strong></p>
+<p><img alt="" src="../images/1-20.png" /></p>
+<p>在独立或随机删失的假设下，我们假设被删失的40个个体与仍处于风险的40个个体在生存经验上是相似的：我们估计被删失的40人中也有5人在相同时间段内患病。</p>
+<p><img alt="" src="../images/1-21.png" /></p>
+<p>独立和随机删失背后的思想是，在时间 t 被删失的个体，就好像是从时间 t 风险集中的个体中随机选择出来被删失的一样。</p>
+<h3 id="63">6.3 非信息删失</h3>
+<p>删失是<strong>非信息性</strong>还是信息性的，取决于两个分布：</p>
+<ul>
+<li>事件发生时间的分布</li>
+<li>删失发生时间的分布</li>
+</ul>
+<p>如果<strong>生存时间(T)的分布不提供关于删失时间(C)分布的任何信息</strong>，反之亦然，则发生非信息删失。否则，删失是信息性的。</p>
+<p><strong><u>一个例子</u></strong></p>
+<p><img alt="Independent and random but informative censoring" src="../images/1-23.png" /></p>
+<h3 id="64">6.4 总结</h3>
+<p>许多分析技术，例如对数秩检验和Cox模型，<strong>依赖于独立删失的假设，以便在存在右删失数据的情况下进行有效推断</strong>。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.path", "navigation.top"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
